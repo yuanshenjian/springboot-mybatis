@@ -16,4 +16,3 @@ logs/
 *.log
 *.DS_Store
 conf/properties/*
-shell/*

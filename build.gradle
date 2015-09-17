@@ -65,5 +65,5 @@ task wrapper(type: Wrapper) {
 }
 
 task initDatabase(type: Exec) {
-    commandLine './shell/init_db.sh'
+    commandLine './shell/init_db_root.sh'
 }
