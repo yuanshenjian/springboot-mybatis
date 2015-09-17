@@ -1,0 +1,69 @@
+buildscript {
+    ext {
+        springBootVersion = '1.2.5.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath 'io.spring.gradle:dependency-management-plugin:0.5.1.RELEASE'
+        classpath 'org.flywaydb:flyway-gradle-plugin:3.2.1'
+    }
+}
+
+group 'org.yood.springboot'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'org.flywaydb.flyway'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-configuration-processor'
+
+    compile 'org.mybatis:mybatis:3.2.4'
+    compile 'org.mybatis:mybatis-spring:1.2.2'
+    compile 'org.springframework:spring-jdbc:4.1.6.RELEASE'
+    compile 'org.apache.tomcat:tomcat-jdbc:7.0.50'
+    compile 'mysql:mysql-connector-java:5.1.35'
+
+    compile 'com.alibaba:fastjson:1.1.34'
+    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+    compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+    compile 'com.jayway.jsonpath:json-path:0.9.1'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+flyway {
+    driver = 'com.mysql.jdbc.Driver'
+    url = 'jdbc:mysql://localhost:3306/spring_boot_mybatis?useUnicode=true&characterEncoding=UTF-8'
+    user = 'root'
+    password = ''
+}
+
+jar {
+    baseName = 'spring-boot-mybatis'
+    version = '1.0-SNAPSHOT'
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.5'
+}
+
+task initDatabase(type: Exec) {
+    commandLine './shell/init_db.sh'
+}
