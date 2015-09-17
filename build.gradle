@@ -59,11 +59,13 @@ jar {
     version = '1.0-SNAPSHOT'
 }
 
-
 task wrapper(type: Wrapper) {
     gradleVersion = '2.5'
 }
 
+tomcatRunWar.configFile = file('src/main/resources/tomcat-config.xml')
+
 task initDatabase(type: Exec) {
     commandLine './shell/init_db_root.sh'
 }
+

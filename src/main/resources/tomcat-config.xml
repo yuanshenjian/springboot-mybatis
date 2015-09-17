@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context sessionCookiePath="/por" sessionCookieName="PORJSESSIONID">
+    <Resource name="jdbc/dev"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="uob_por"
+              password="uob_por"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql:uob_por"
+              validationQuery="select 1"
+              maxActive="100"
+              maxIdle="8"
+              minIdle="8"
+              initialSize="10"
+            />
+</Context>
