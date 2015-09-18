@@ -15,7 +15,7 @@ public final class UUIDUtils {
     public static String createUUID() {
 
         String uuid = UUID.randomUUID().toString();
-        LOGGER.info("******* {} ******", uuid);
+        LOGGER.info("Random uuid = {}", uuid);
 
         return uuid.replace("-", "");
     }

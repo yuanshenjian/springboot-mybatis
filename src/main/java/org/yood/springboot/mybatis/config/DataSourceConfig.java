@@ -1,10 +1,11 @@
-package org.yood.springboot.mybatis;
+package org.yood.springboot.mybatis.config;
 
-import org.yood.springboot.mybatis.config.DataSourceProperties;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +27,8 @@ public class DataSourceConfig {
     public static final String MAPPER_PACKAGE = "org.yood.springboot.mybatis.mapper";
     private static final String TYPE_ALIASES_PACKAGE = "org.yood.springboot.mybatis.entity";
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceConfig.class);
+
     @Autowired
     private DataSourceProperties dataSourceProperties;
 
@@ -33,6 +36,7 @@ public class DataSourceConfig {
 
     @Bean(destroyMethod = "close")
     public DataSource dataSource() {
+        LOGGER.info("Data source properties = {}", dataSourceProperties);
         dataSource = new DataSource();
         dataSource.setDriverClassName(dataSourceProperties.getDriverClassName());
         dataSource.setUrl(dataSourceProperties.getUrl());

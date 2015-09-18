@@ -16,4 +16,5 @@ public interface UserService {
 
     List<User> getAll() throws SQLException;
 
+    User getLoginUser(String username, String password);
 }

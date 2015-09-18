@@ -1,21 +1,19 @@
-package org.yood.springboot.mybatis;
+package org.yood.springboot.mybatis.config;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.servlet.Filter;
+import org.yood.springboot.mybatis.web.filter.CharacterEncodingFilter;
 
 @Configuration
 public class FiltersConfig {
 
 
     @Bean
-    public FilterRegistrationBean characterFilterRegistration(@Qualifier("characterEncodingFilter") Filter filter) {
+    public FilterRegistrationBean registerCharacterEncodingFilter() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setFilter(filter);
-        registration.setOrder(3);
+        registration.setFilter(new CharacterEncodingFilter());
+        registration.setOrder(1);
         return registration;
     }
 }

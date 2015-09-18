@@ -87,4 +87,19 @@ public class DataSourceProperties {
     public void setValidationQuery(String validationQuery) {
         this.validationQuery = validationQuery;
     }
+
+    @Override
+    public String toString() {
+        return "DataSourceProperties{" +
+                "driverClassName='" + driverClassName + '\'' +
+                ", url='" + url + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", maxActive=" + maxActive +
+                ", maxIdle=" + maxIdle +
+                ", minIdle=" + minIdle +
+                ", initialSize=" + initialSize +
+                ", validationQuery='" + validationQuery + '\'' +
+                '}';
+    }
 }

@@ -34,14 +34,15 @@ public class ContactController {
         if (null == user) {
             return ResponseEntity.notFound().build();
         }
-        LOGGER.info("******* {} *******", user);
+        LOGGER.info("user={}", user);
         return ResponseEntity.ok(contactService.getByUser(user.getId()));
     }
 
 
     @RequestMapping(value = "users/{userId}/contacts/{id}",
                     method = RequestMethod.GET)
-    public ResponseEntity<?> getFromUser(@PathVariable int userId, @PathVariable int id) throws IOException, SQLException {
+    public ResponseEntity<?> getFromUser(@PathVariable int userId,
+                                         @PathVariable int id) throws IOException, SQLException {
         Contact contact = contactService.get(id);
         if (null == contact) {
             return ResponseEntity.notFound().build();

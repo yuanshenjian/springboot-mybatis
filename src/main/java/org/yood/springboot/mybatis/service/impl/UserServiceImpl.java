@@ -39,4 +39,11 @@ public class UserServiceImpl implements UserService {
     public List<User> getAll() throws SQLException {
         return userMapper.getAll();
     }
+
+    @Override
+    public User getLoginUser(String username, String password) {
+        User loginUser = new User();
+        loginUser.setName(username);
+        return loginUser;
+    }
 }
