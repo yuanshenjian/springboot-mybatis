@@ -20,13 +20,13 @@ public class ExceptionHandlerControllerAdvice {
 
     @ExceptionHandler({SQLException.class, CommunicationsException.class})
     public ResponseEntity<?> handleSQLException(SQLException exception) {
-        LOGGER.error("******* SQLException *******", exception);
+        LOGGER.error("SQLException", exception);
         ExceptionBody errorBody = new ExceptionBody(ExceptionBody.KEY_SYSTEM, ExceptionBody.SystemErrorType.BUSY);
         return ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).body(errorBody);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(HackerException.class)
+    @ExceptionHandler(UnAuthorizedException.class)
     public void handleHackerException() {
         LOGGER.error("Hacker attack,leave it away,we are safe");
     }

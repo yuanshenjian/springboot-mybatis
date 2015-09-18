@@ -24,9 +24,12 @@ apply plugin: 'org.flywaydb.flyway'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-
 repositories {
     mavenCentral()
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.5'
 }
 
 dependencies {
@@ -58,12 +61,6 @@ jar {
     baseName = 'spring-boot-mybatis'
     version = '1.0-SNAPSHOT'
 }
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.5'
-}
-
-tomcatRunWar.configFile = file('src/main/resources/tomcat-config.xml')
 
 task initDatabase(type: Exec) {
     commandLine './shell/init_db_root.sh'

@@ -20,15 +20,16 @@ import javax.annotation.PreDestroy;
 @Configuration
 @EnableTransactionManagement
 @EnableConfigurationProperties(DataSourceProperties.class)
-@MapperScan("org.yood.springboot.mybatis.mapper")
+@MapperScan(DataSourceConfig.MAPPER_PACKAGE)
 public class DataSourceConfig {
 
+    public static final String MAPPER_PACKAGE = "org.yood.springboot.mybatis.mapper";
+    private static final String TYPE_ALIASES_PACKAGE = "org.yood.springboot.mybatis.entity";
 
     @Autowired
     private DataSourceProperties dataSourceProperties;
 
     private DataSource dataSource;
-
 
     @Bean(destroyMethod = "close")
     public DataSource dataSource() {
@@ -41,26 +42,24 @@ public class DataSourceConfig {
         dataSource.setMaxActive(dataSourceProperties.getMaxActive());
         dataSource.setMaxIdle(dataSourceProperties.getMaxIdle());
         dataSource.setMinIdle(dataSourceProperties.getMinIdle());
+        dataSource.setValidationQuery(dataSourceProperties.getValidationQuery());
         return dataSource;
     }
-
 
     @Bean
     public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource());
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        sqlSessionFactoryBean.setTypeAliasesPackage("org.yood.springboot.mybatis.entity");
+        sqlSessionFactoryBean.setTypeAliasesPackage(TYPE_ALIASES_PACKAGE);
         sqlSessionFactoryBean.setConfigLocation(resolver.getResource("classpath:mybatis-config.xml"));
         return sqlSessionFactoryBean.getObject();
     }
-
 
     @Bean
     public PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dataSource());
     }
-
 
     @PreDestroy
     public void close() {

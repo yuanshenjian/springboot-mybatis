@@ -1,6 +1,6 @@
 package org.yood.springboot.mybatis.web.controller;
 
-import org.yood.springboot.mybatis.web.exception.HackerException;
+import org.yood.springboot.mybatis.web.exception.UnAuthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -22,9 +22,9 @@ public class UserController {
 
     @RequestMapping(value = "users/{id}",
                     method = RequestMethod.GET)
-    public ResponseEntity get(@PathVariable int id) throws HackerException, SQLException {
+    public ResponseEntity get(@PathVariable int id) throws UnAuthorizedException, SQLException {
         if (id <= 0) {
-            throw HackerException.newInstance();
+            throw UnAuthorizedException.newInstance();
         }
         User user = userService.get(id);
         if (null == user) {
@@ -41,9 +41,9 @@ public class UserController {
 
     @RequestMapping(value = "users",
                     method = RequestMethod.PUT)
-    public ResponseEntity<?> update(@RequestBody User user) throws HackerException, SQLException {
+    public ResponseEntity<?> update(@RequestBody User user) throws UnAuthorizedException, SQLException {
         if (user.getId() <= 0) {
-            throw HackerException.newInstance();
+            throw UnAuthorizedException.newInstance();
         }
         userService.update(user);
         return ResponseEntity.ok().build();
@@ -51,10 +51,10 @@ public class UserController {
 
     @RequestMapping(value = "users",
                     method = RequestMethod.POST)
-    public ResponseEntity<?> add(@RequestBody User user) throws SQLException, HackerException {
+    public ResponseEntity<?> add(@RequestBody User user) throws SQLException, UnAuthorizedException {
         if (StringUtils.isEmpty(user.getName())
                 || StringUtils.isEmpty(user.getSex())) {
-            throw HackerException.newInstance();
+            throw UnAuthorizedException.newInstance();
         }
         userService.add(user);
         return ResponseEntity.ok().build();

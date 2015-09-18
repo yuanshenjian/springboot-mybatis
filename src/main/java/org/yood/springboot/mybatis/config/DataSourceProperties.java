@@ -2,7 +2,7 @@ package org.yood.springboot.mybatis.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "tomcat.datasource",
+@ConfigurationProperties(prefix = "datasource",
                          ignoreUnknownFields = false)
 public class DataSourceProperties {
 
@@ -13,8 +13,8 @@ public class DataSourceProperties {
     private int maxActive;
     private int maxIdle;
     private int minIdle;
-
     private int initialSize;
+    private String validationQuery;
 
     public String getDriverClassName() {
         return driverClassName;
@@ -76,9 +76,15 @@ public class DataSourceProperties {
         return initialSize;
     }
 
-
     public void setInitialSize(int initialSize) {
         this.initialSize = initialSize;
     }
 
+    public String getValidationQuery() {
+        return validationQuery;
+    }
+
+    public void setValidationQuery(String validationQuery) {
+        this.validationQuery = validationQuery;
+    }
 }

@@ -9,7 +9,7 @@ import org.yood.springboot.mybatis.entity.Contact;
 import org.yood.springboot.mybatis.entity.User;
 import org.yood.springboot.mybatis.service.ContactService;
 import org.yood.springboot.mybatis.service.UserService;
-import org.yood.springboot.mybatis.web.exception.HackerException;
+import org.yood.springboot.mybatis.web.exception.UnAuthorizedException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -51,9 +51,9 @@ public class ContactController {
 
     @RequestMapping(value = "contacts/{id}",
                     method = RequestMethod.GET)
-    public ResponseEntity<?> get(@PathVariable int id) throws SQLException, HackerException {
+    public ResponseEntity<?> get(@PathVariable int id) throws SQLException, UnAuthorizedException {
         if (id <= 0) {
-            throw HackerException.newInstance();
+            throw UnAuthorizedException.newInstance();
         }
         Contact contact = contactService.get(id);
         if (null == contact) {
