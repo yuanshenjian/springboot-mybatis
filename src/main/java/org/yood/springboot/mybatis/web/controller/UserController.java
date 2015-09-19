@@ -42,9 +42,6 @@ public class UserController {
     @RequestMapping(value = "users",
                     method = RequestMethod.PUT)
     public ResponseEntity<?> update(@RequestBody User user) throws UnAuthorizedException, SQLException {
-        if (user.getId() <= 0) {
-            throw UnAuthorizedException.newInstance();
-        }
         userService.update(user);
         return ResponseEntity.ok().build();
     }

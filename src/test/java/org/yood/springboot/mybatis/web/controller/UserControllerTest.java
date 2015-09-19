@@ -44,7 +44,6 @@ public class UserControllerTest {
     @Test
     public void testGet() throws Exception {
         User user = new User("Shenjian");
-        user.setId(1);
         when(userService.get(anyInt())).thenReturn(user);
         mockMvc.perform(get("/users/1")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -79,7 +78,6 @@ public class UserControllerTest {
     @Test
     public void testUpdate() throws Exception {
         User user = new User("Shenjian,Yuan");
-        user.setId(1);
         mockMvc.perform(put("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JSON.toJSONString(user)))

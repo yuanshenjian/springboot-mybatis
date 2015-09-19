@@ -12,6 +12,10 @@ public class User implements Serializable {
     private List<Authority.Role> roles;
     private List<Contact> contacts = new ArrayList<>();
 
+    public User(String username) {
+        this.username = username;
+    }
+
     public enum Sex {
         MALE,
         FEMALE

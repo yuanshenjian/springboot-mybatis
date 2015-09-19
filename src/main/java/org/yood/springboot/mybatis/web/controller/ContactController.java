@@ -35,7 +35,8 @@ public class ContactController {
             return ResponseEntity.notFound().build();
         }
         LOGGER.info("user={}", user);
-        return ResponseEntity.ok(contactService.queryByUserId(user.getId()));
+        return null;
+//        return ResponseEntity.ok(contactService.queryByUserId(user.getUsername()));
     }
 
 

@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface ContactMapper {
 
-    void deleteByUser(int userId) throws SQLException;
-
     void update(Contact contact) throws SQLException;
 
     List<Contact> selectByUserId(int userId) throws SQLException;
