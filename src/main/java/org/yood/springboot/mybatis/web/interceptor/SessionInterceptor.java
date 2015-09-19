@@ -19,7 +19,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
         HttpSession session = request.getSession(RequestUtils.isLogin(request));
         String requestedSessionId = request.getRequestedSessionId();
 
-        LOGGER.info("Requested Session = {}, Request queryById session = {}", requestedSessionId,
+        LOGGER.info("Requested Session = {}, Request selectById session = {}", requestedSessionId,
                     session == null ? null : session.getId());
         if (null == session) {
             LOGGER.info("!!!Invalid session  : {}", requestedSessionId);

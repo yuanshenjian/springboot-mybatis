@@ -35,7 +35,7 @@ public class UserServiceTest {
         userService.add(user);
         userService.add(user);
         userService.add(user);
-        verify(userMapper, times(3)).add(user);
+        verify(userMapper, times(3)).insert(user);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class UserServiceTest {
     public void testGet() throws Exception {
         User user = new User();
         user.setId(1);
-        when(userMapper.queryById(anyInt())).thenReturn(user);
+        when(userMapper.selectById(anyInt())).thenReturn(user);
         assertNotNull(userService.get(anyInt()));
         assertEquals(userService.get(anyInt()).getId(), user.getId());
     }
@@ -57,7 +57,7 @@ public class UserServiceTest {
     public void testGetAll() throws Exception {
         User user = new User();
         User user1 = new User();
-        when(userMapper.queryAll()).thenReturn(Arrays.asList(user, user1));
+        when(userMapper.selectAll()).thenReturn(Arrays.asList(user, user1));
         assertEquals(userService.getAll().size(), 2);
     }
 }

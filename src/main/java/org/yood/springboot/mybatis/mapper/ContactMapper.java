@@ -13,12 +13,12 @@ public interface ContactMapper {
 
     void update(Contact contact) throws SQLException;
 
-    List<Contact> getByUser(int userId) throws SQLException;
+    List<Contact> selectByUserId(int userId) throws SQLException;
 
-    Contact get(int id) throws SQLException;
+    Contact selectById(int id) throws SQLException;
 
-    void add(Contact contact) throws SQLException;
+    void insert(Contact contact) throws SQLException;
 
-    List<Contact> getAll() throws SQLException;
+    List<Contact> selectAll() throws SQLException;
 
 }

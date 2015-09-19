@@ -26,22 +26,22 @@ public class UserMapperTest {
 
     @Test
     public void testAdd() throws Exception {
-        int preSize = userMapper.queryAll().size();
+        int preSize = userMapper.selectAll().size();
         User user= new User();
         user.setUsername("ysjian");
         user.setSex(User.Sex.MALE);
-        userMapper.add(user);
-        assertEquals(preSize+1,userMapper.queryAll().size());
+        userMapper.insert(user);
+        assertEquals(preSize+1,userMapper.selectAll().size());
     }
 
     @Test
     public void testUpdate() throws Exception {
-        List<User> all = userMapper.queryAll();
+        List<User> all = userMapper.selectAll();
         if (all.size()>0){
             User user = all.get(0);
             user.setUsername("update name");
             userMapper.update(user);
-            assertEquals(user.getUsername(),userMapper.queryById(user.getId()).getUsername());
+            assertEquals(user.getUsername(),userMapper.selectById(user.getId()).getUsername());
         }
         userMapper.update(null);
 
@@ -49,12 +49,12 @@ public class UserMapperTest {
 
     @Test(expected = NullPointerException.class)
     public void testGet() throws Exception {
-        userMapper.queryById(0).getId();
+        userMapper.selectById(0).getId();
     }
 
     @Test
     public void testGetAll() throws Exception {
-        assertTrue(userMapper.queryAll().size() >= 0);
+        assertTrue(userMapper.selectAll().size() >= 0);
     }
 
 }

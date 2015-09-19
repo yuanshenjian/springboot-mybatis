@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface ContactService {
 
-    void deleteByUserId(int userId) throws SQLException;
-
     void update(Contact contact) throws SQLException;
 
     List<Contact> queryByUserId(int userId) throws SQLException;

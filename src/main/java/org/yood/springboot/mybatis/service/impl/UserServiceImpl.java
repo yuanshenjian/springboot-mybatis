@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void add(User user) throws SQLException {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        userMapper.add(user);
+        userMapper.insert(user);
     }
 
     @Override
@@ -39,12 +39,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User get(int id) throws SQLException {
-        return userMapper.queryById(id);
+        return userMapper.selectById(id);
     }
 
     @Override
     public List<User> getAll() throws SQLException {
-        return userMapper.queryAll();
+        return userMapper.selectAll();
     }
 
     @Override
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user;
         try {
-            user = userMapper.queryByName(username);
+            user = userMapper.selectByName(username);
         } catch (SQLException e) {
             throw new UsernameNotFoundException("SQLException", e);
         }

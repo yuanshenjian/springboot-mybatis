@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface UserMapper {
 
-    void add(User user) throws SQLException;
+    void insert(User user) throws SQLException;
 
     void update(User user) throws SQLException;
 
-    User queryById(int id) throws SQLException;
+    User selectById(int id) throws SQLException;
 
-    List<User> queryAll() throws SQLException;
+    List<User> selectAll() throws SQLException;
 
-    User queryByName(String name)throws SQLException;
+    User selectByName(String name)throws SQLException;
 }
