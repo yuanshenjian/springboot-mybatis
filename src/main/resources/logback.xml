@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true" scan="true">
 
-    <appender username="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger.%method\(\)%n******* %m *******%n%n
             </pattern>
         </encoder>
     </appender>
 
-    <appender username="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>.log/monitor.log</File>
 
         <encoder>
@@ -34,8 +34,8 @@
         <appender-ref ref="FILE"/>
     </root>
 
-    <logger username="org" level="ERROR"/>
+    <logger name="org" level="ERROR"/>
 
-    <logger username="org.yood" level="INFO"/>
+    <logger name="org.yood" level="INFO"/>
 
 </configuration>
