@@ -1,6 +1,8 @@
 package org.yood.springboot.mybatis.web.filter;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.yood.springboot.mybatis.util.EncodingUtils;
@@ -13,6 +15,8 @@ import java.io.IOException;
 
 @Component
 public class CharacterEncodingFilter extends OncePerRequestFilter {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CharacterEncodingFilter.class);
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,

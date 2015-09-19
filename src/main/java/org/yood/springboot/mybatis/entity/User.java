@@ -1,19 +1,20 @@
 package org.yood.springboot.mybatis.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class User implements Serializable {
 
-    private String username;
+    private String name;
     private String password;
     private Sex sex;
     private List<Authority.Role> roles;
-    private List<Contact> contacts = new ArrayList<>();
+
+    public User() {
+    }
 
     public User(String username) {
-        this.username = username;
+        this.name = username;
     }
 
     public enum Sex {
@@ -21,12 +22,12 @@ public class User implements Serializable {
         FEMALE
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -53,11 +54,4 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-    public List<Contact> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
-    }
 }

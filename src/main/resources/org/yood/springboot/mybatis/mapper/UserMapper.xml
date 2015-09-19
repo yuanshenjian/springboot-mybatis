@@ -3,25 +3,4 @@
 
 <mapper namespace="org.yood.springboot.mybatis.mapper.UserMapper">
 
-    <select id="get"  resultType="User">
-        select * from tb_user
-        where id=#{id}
-    </select>
-
-    <select id="getAll"  resultType="User">
-        select * from tb_user
-    </select>
-
-    <insert id="add">
-      insert into tb_user(username,sex) values(#{username},#{sex})
-    </insert>
-
-    <delete id="delete">
-        delete from tb_user where id=#{id}
-    </delete>
-
-    <update id="update">
-        update tb_user set username=#{username} where id=#{id}
-    </update>
-
 </mapper>

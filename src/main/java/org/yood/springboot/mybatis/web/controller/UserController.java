@@ -1,12 +1,12 @@
 package org.yood.springboot.mybatis.web.controller;
 
-import org.yood.springboot.mybatis.web.exception.UnAuthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.yood.springboot.mybatis.entity.User;
 import org.yood.springboot.mybatis.service.UserService;
+import org.yood.springboot.mybatis.web.exception.UnAuthorizedException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,14 +19,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-    @RequestMapping(value = "users/{id}",
+    @RequestMapping(value = "users/{username}",
                     method = RequestMethod.GET)
-    public ResponseEntity get(@PathVariable int id) throws UnAuthorizedException, SQLException {
-        if (id <= 0) {
-            throw UnAuthorizedException.newInstance();
-        }
-        User user = userService.get(id);
+    public ResponseEntity get(@PathVariable String username) throws UnAuthorizedException, SQLException {
+        User user = userService.getByUserName(username);
         if (null == user) {
             return ResponseEntity.notFound().build();
         }
@@ -49,7 +45,7 @@ public class UserController {
     @RequestMapping(value = "users",
                     method = RequestMethod.POST)
     public ResponseEntity<?> add(@RequestBody User user) throws SQLException, UnAuthorizedException {
-        if (StringUtils.isEmpty(user.getUsername())
+        if (StringUtils.isEmpty(user.getName())
                 || StringUtils.isEmpty(user.getSex())) {
             throw UnAuthorizedException.newInstance();
         }

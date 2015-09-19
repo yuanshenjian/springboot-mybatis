@@ -1,10 +1,6 @@
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE tb_user (
-  id   INT AUTO_INCREMENT,
-  username VARCHAR(20),
-  sex  ENUM('MALE', 'FEMALE'),
-  PRIMARY KEY (id)
+CREATE TABLE sbm_user (
+  name     VARCHAR(55)  NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  sex      ENUM('MALE', 'FEMALE') DEFAULT "MALE",
+  PRIMARY KEY (name)
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.yood.springboot.mybatis.entity.User;
 import org.yood.springboot.mybatis.service.UserService;
-import org.yood.springboot.mybatis.web.utils.RequestUtils;
+import org.yood.springboot.mybatis.web.util.RequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;

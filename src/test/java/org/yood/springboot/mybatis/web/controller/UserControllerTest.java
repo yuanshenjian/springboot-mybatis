@@ -16,7 +16,7 @@ import java.util.Arrays;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -44,7 +44,7 @@ public class UserControllerTest {
     @Test
     public void testGet() throws Exception {
         User user = new User("Shenjian");
-        when(userService.get(anyInt())).thenReturn(user);
+        when(userService.getByUserName(anyString())).thenReturn(user);
         mockMvc.perform(get("/users/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

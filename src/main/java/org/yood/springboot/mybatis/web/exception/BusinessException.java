@@ -9,8 +9,6 @@ public class BusinessException extends Exception {
     private BusinessException() {
     }
 
-    private static final long serialVersionUID = -7751109016876174582L;
-
     private final List<ExceptionBody> EXCEPTION_BODIES = new ArrayList<>();
 
 

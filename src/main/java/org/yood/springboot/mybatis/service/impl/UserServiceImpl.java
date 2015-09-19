@@ -1,10 +1,6 @@
 package org.yood.springboot.mybatis.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +10,6 @@ import org.yood.springboot.mybatis.service.UserService;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -37,10 +32,6 @@ public class UserServiceImpl implements UserService {
         userMapper.update(user);
     }
 
-    @Override
-    public User get(int id) throws SQLException {
-        return userMapper.selectById(id);
-    }
 
     @Override
     public List<User> getAll() throws SQLException {
@@ -54,17 +45,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user;
-        try {
-            user = userMapper.selectByName(username);
-        } catch (SQLException e) {
-            throw new UsernameNotFoundException("SQLException", e);
-        }
-        List<GrantedAuthority> roles = user.getRoles()
-                .stream()
-                .map(role -> new SimpleGrantedAuthority(role.name()))
-                .collect(Collectors.toList());
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), roles);
+    public User getByUserName(String username) throws SQLException {
+        return userMapper.selectByName(username);
     }
+
 }

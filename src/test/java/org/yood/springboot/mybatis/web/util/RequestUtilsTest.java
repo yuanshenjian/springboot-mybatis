@@ -1,4 +1,4 @@
-package org.yood.springboot.mybatis.web.utils;
+package org.yood.springboot.mybatis.web.util;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SpringBootMybatisApplication.class)
-@TransactionConfiguration(defaultRollback = false)
+@TransactionConfiguration(defaultRollback = true)
 @Transactional
 public class UserMapperTest {
 
@@ -27,29 +28,29 @@ public class UserMapperTest {
     @Test
     public void testAdd() throws Exception {
         int preSize = userMapper.selectAll().size();
-        User user= new User();
-        user.setUsername("ysjian");
+        User user = new User();
+        user.setName("ysjian");
+        user.setPassword(new BCryptPasswordEncoder().encode("000"));
         user.setSex(User.Sex.MALE);
         userMapper.insert(user);
-        assertEquals(preSize+1,userMapper.selectAll().size());
+        assertEquals(preSize + 1, userMapper.selectAll().size());
     }
 
     @Test
     public void testUpdate() throws Exception {
         List<User> all = userMapper.selectAll();
-        if (all.size()>0){
+        if (all.size() > 0) {
             User user = all.get(0);
-            user.setUsername("update name");
+            user.setSex(User.Sex.FEMALE);
             userMapper.update(user);
-            assertEquals(user.getUsername(),userMapper.selectById(user.getId()).getUsername());
+            assertEquals(user.getSex(), userMapper.selectByName(user.getName()).getSex());
         }
         userMapper.update(null);
-
     }
 
     @Test(expected = NullPointerException.class)
     public void testGet() throws Exception {
-        userMapper.selectById(0).getId();
+        userMapper.selectByName("").getName();
     }
 
     @Test
