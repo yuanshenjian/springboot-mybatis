@@ -2,7 +2,7 @@
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tb_user (
   id   INT AUTO_INCREMENT,
-  name VARCHAR(20),
+  username VARCHAR(20),
   sex  ENUM('MALE', 'FEMALE'),
   PRIMARY KEY (id)
 )

@@ -3,7 +3,7 @@
 CREATE TABLE tb_contact (
   id INT AUTO_INCREMENT,
   user_id INT ,
-  name VARCHAR(20),
+  username VARCHAR(20),
   age INT,
   address VARCHAR(100),
   PRIMARY KEY (id)

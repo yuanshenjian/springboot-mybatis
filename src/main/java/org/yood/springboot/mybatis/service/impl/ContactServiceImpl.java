@@ -18,10 +18,9 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     @Transactional
-    public void deleteByUser(int userId) throws SQLException {
+    public void deleteByUserId(int userId) throws SQLException {
         contactMapper.deleteByUser(userId);
     }
-
 
     @Override
     @Transactional
@@ -30,12 +29,12 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> getByUser(int userId) throws SQLException {
+    public List<Contact> queryByUserId(int userId) throws SQLException {
         return contactMapper.getByUser(userId);
     }
 
     @Override
-    public Contact get(int id) throws SQLException {
+    public Contact queryById(int id) throws SQLException {
         return contactMapper.get(id);
     }
 
@@ -46,7 +45,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> getAll() throws SQLException {
+    public List<Contact> queryAll() throws SQLException {
         return contactMapper.getAll();
     }
 }

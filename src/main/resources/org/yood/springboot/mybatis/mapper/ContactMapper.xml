@@ -17,7 +17,7 @@
     </select>
 
     <insert id="add">
-      insert into tb_contact(user_id,name,age,address) values(#{userId},#{name},#{age},#{address})
+      insert into tb_contact(user_id,username,age,address) values(#{userId},#{username},#{age},#{address})
     </insert>
 
     <delete id="delete">
@@ -32,7 +32,7 @@
         update tb_contact
         <set>
             <if test="userId > 0">user_id=#{userId},</if>
-            <if test="name != null">name = #{name},</if>
+            <if test="username != null">username = #{username},</if>
             <if test="age > 0">age = #{age},</if>
             <if test="address != null">address = #{address},</if>
         </set>

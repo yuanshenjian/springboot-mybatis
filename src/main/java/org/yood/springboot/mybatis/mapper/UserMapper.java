@@ -11,8 +11,9 @@ public interface UserMapper {
 
     void update(User user) throws SQLException;
 
-    User get(int id) throws SQLException;
+    User queryById(int id) throws SQLException;
 
-    List<User> getAll() throws SQLException;
+    List<User> queryAll() throws SQLException;
 
+    User queryByName(String name)throws SQLException;
 }

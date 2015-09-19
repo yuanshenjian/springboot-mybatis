@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context sessionCookiePath="/por" sessionCookieName="PORJSESSIONID">
-    <Resource name="jdbc/dev"
+    <Resource username="jdbc/dev"
               auth="Container"
               type="javax.sql.DataSource"
               username="uob_por"

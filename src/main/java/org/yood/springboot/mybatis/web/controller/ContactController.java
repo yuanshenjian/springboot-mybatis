@@ -35,7 +35,7 @@ public class ContactController {
             return ResponseEntity.notFound().build();
         }
         LOGGER.info("user={}", user);
-        return ResponseEntity.ok(contactService.getByUser(user.getId()));
+        return ResponseEntity.ok(contactService.queryByUserId(user.getId()));
     }
 
 
@@ -43,7 +43,7 @@ public class ContactController {
                     method = RequestMethod.GET)
     public ResponseEntity<?> getFromUser(@PathVariable int userId,
                                          @PathVariable int id) throws IOException, SQLException {
-        Contact contact = contactService.get(id);
+        Contact contact = contactService.queryById(id);
         if (null == contact) {
             return ResponseEntity.notFound().build();
         }
@@ -56,7 +56,7 @@ public class ContactController {
         if (id <= 0) {
             throw UnAuthorizedException.newInstance();
         }
-        Contact contact = contactService.get(id);
+        Contact contact = contactService.queryById(id);
         if (null == contact) {
             return ResponseEntity.notFound().build();
         }
@@ -66,7 +66,7 @@ public class ContactController {
     @RequestMapping(value = "contacts",
                     method = RequestMethod.GET)
     public ResponseEntity<?> getAll() throws IOException, SQLException {
-        return ResponseEntity.ok(contactService.getAll());
+        return ResponseEntity.ok(contactService.queryAll());
     }
 
     @RequestMapping(value = "contacts",

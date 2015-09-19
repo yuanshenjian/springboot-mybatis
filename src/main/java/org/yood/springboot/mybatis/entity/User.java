@@ -6,25 +6,32 @@ import java.util.List;
 
 public class User implements Serializable {
 
-    private int id;
-    private String name;
+    private String username;
+    private String password;
     private Sex sex;
+    private List<Authority.Role> roles;
     private List<Contact> contacts = new ArrayList<>();
-
 
     public enum Sex {
         MALE,
         FEMALE
     }
 
-
-    public User() {
+    public String getUsername() {
+        return username;
     }
 
-    public User(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Sex getSex() {
         return sex;
@@ -34,20 +41,12 @@ public class User implements Serializable {
         this.sex = sex;
     }
 
-    public int getId() {
-        return id;
+    public List<Authority.Role> getRoles() {
+        return roles;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setRoles(List<Authority.Role> roles) {
+        this.roles = roles;
     }
 
     public List<Contact> getContacts() {
@@ -56,14 +55,5 @@ public class User implements Serializable {
 
     public void setContacts(List<Contact> contacts) {
         this.contacts = contacts;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", contacts=" + contacts +
-                '}';
     }
 }

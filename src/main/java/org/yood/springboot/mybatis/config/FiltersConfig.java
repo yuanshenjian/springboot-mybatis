@@ -8,7 +8,6 @@ import org.yood.springboot.mybatis.web.filter.CharacterEncodingFilter;
 @Configuration
 public class FiltersConfig {
 
-
     @Bean
     public FilterRegistrationBean registerCharacterEncodingFilter() {
         FilterRegistrationBean registration = new FilterRegistrationBean();

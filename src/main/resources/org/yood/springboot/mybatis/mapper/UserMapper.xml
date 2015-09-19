@@ -13,7 +13,7 @@
     </select>
 
     <insert id="add">
-      insert into tb_user(name,sex) values(#{name},#{sex})
+      insert into tb_user(username,sex) values(#{username},#{sex})
     </insert>
 
     <delete id="delete">
@@ -21,7 +21,7 @@
     </delete>
 
     <update id="update">
-        update tb_user set name=#{name} where id=#{id}
+        update tb_user set username=#{username} where id=#{id}
     </update>
 
 </mapper>

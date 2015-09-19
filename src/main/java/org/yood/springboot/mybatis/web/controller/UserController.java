@@ -52,7 +52,7 @@ public class UserController {
     @RequestMapping(value = "users",
                     method = RequestMethod.POST)
     public ResponseEntity<?> add(@RequestBody User user) throws SQLException, UnAuthorizedException {
-        if (StringUtils.isEmpty(user.getName())
+        if (StringUtils.isEmpty(user.getUsername())
                 || StringUtils.isEmpty(user.getSex())) {
             throw UnAuthorizedException.newInstance();
         }

@@ -6,7 +6,7 @@ public class Contact implements Serializable {
 
 	private int id;
 	private int userId;
-	private String name;
+	private String username;
 	private String address;
 	private int age;
 
@@ -14,7 +14,7 @@ public class Contact implements Serializable {
 	}
 
 	public Contact(String name, String address, int age) {
-		this.name = name;
+		this.username = name;
 		this.address = address;
 		this.age = age;
 	}
@@ -25,11 +25,11 @@ public class Contact implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getAddress() {
 		return address;
@@ -40,17 +40,13 @@ public class Contact implements Serializable {
 	public int getAge() {
 		return age;
 	}
-
 	public int getUserId() {
 		return userId;
 	}
-
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-
 	public void setAge(int age) {
-
 		this.age = age;
 	}
 
@@ -59,7 +55,7 @@ public class Contact implements Serializable {
 		return "Contact{" +
 				"id=" + id +
 				", userId=" + userId +
-				", name='" + name + '\'' +
+				", username='" + username + '\'' +
 				", address='" + address + '\'' +
 				", age=" + age +
 				'}';

@@ -42,7 +42,7 @@ public class ContactControllerTest {
     @Test
     public void testGet() throws Exception {
         Contact contact = new Contact("Shenjian", "丈八六路", 25);
-        when(contactService.get(anyInt())).thenReturn(contact);
+        when(contactService.queryById(anyInt())).thenReturn(contact);
         mockMvc.perform(get("/contacts/1")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -53,7 +53,7 @@ public class ContactControllerTest {
     public void testGetAll() throws Exception {
         Contact contact1 = new Contact("ShenjianYuan1", "ShannXi Xi'an", 25);
         Contact contact2 = new Contact("ShenjianYuan2", "ShannXi Xi'an", 25);
-        when(contactService.getAll()).thenReturn(Arrays.asList(contact1, contact2));
+        when(contactService.queryAll()).thenReturn(Arrays.asList(contact1, contact2));
         mockMvc.perform(get("/contacts")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

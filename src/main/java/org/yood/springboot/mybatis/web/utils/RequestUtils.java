@@ -13,7 +13,7 @@ public class RequestUtils {
     private RequestUtils() {
     }
 
-    public static final String LOGIN = "/login";
+    public static final String LOGIN = "/lo";
 
     public static String getRequestURIWithoutContextPath(HttpServletRequest request) {
         String requestURI = request.getRequestURI().replaceAll("/+", "/");
