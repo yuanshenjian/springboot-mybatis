@@ -23,7 +23,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SpringBootMybatisApplication.class)
 @WebAppConfiguration
-@IntegrationTest("server.port:0")
+@IntegrationTest({"server.port:0", "server.context-path:/sbm"})
 public class BasicIntegrationTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BasicIntegrationTest.class);
@@ -49,12 +49,12 @@ public class BasicIntegrationTest {
     }
 
     @Before
-    public void setUp() {
+    public void integrationSetup() {
         testRestTemplate = new TestRestTemplate();
     }
 
     @Test
-    public void testStatus() {
+    public void monitor() {
         LOGGER.info("Integration test is running. [port = {}, contextPath = {}]", port, contextPath);
     }
 

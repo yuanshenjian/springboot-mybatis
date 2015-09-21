@@ -26,7 +26,7 @@ public abstract class BasicMockMvcTest {
     private MockMvc mockMvc;
 
     @Before
-    public void mvcSetUp() {
+    public void mvcSetup() {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(injectController())
                 .setHandlerExceptionResolvers(globalExceptionControllerAdvice())
