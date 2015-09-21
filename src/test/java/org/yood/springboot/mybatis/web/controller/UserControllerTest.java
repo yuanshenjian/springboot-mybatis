@@ -1,6 +1,5 @@
 package org.yood.springboot.mybatis.web.controller;
 
-import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -10,12 +9,16 @@ import org.springframework.http.MediaType;
 import org.yood.springboot.mybatis.BasicMockMvcTest;
 import org.yood.springboot.mybatis.entity.User;
 import org.yood.springboot.mybatis.service.UserService;
+import org.yood.springboot.mybatis.util.JSONUtils;
 
 import java.util.Arrays;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -58,12 +61,13 @@ public class UserControllerTest extends BasicMockMvcTest {
     public void testAdd() throws Exception {
         User user = new User("Shenjian,Yuan");
         user.setSex(User.Sex.MALE);
-        mockPost("/users", MediaType.APPLICATION_JSON, JSON.toJSONString(user)).andExpect(status().isOk());
+        mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isOk());
     }
 
     @Test
     public void testUpdate() throws Exception {
         User user = new User("Shenjian,Yuan");
-        mockPut("/users", MediaType.APPLICATION_JSON, JSON.toJSONString(user)).andExpect(status().isOk());
+        mockPut("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isOk());
+        verify(userService,times(1)).update(any(User.class));
     }
 }

@@ -12,19 +12,18 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.yood.springboot.mybatis.service.AuthenticateService;
+import org.yood.springboot.mybatis.service.UserService;
 
 @Configuration
 @EnableWebMvcSecurity
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     @Autowired
     private Environment environment;
 
     @Autowired
-    private AuthenticateService authenticateService;
+    private UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -45,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(authenticateService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Bean
