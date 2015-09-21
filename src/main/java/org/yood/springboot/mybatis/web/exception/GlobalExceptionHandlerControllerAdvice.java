@@ -14,9 +14,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 @ControllerAdvice
-public class ExceptionHandlerControllerAdvice {
+public class GlobalExceptionHandlerControllerAdvice {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionHandlerControllerAdvice.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandlerControllerAdvice.class);
 
     @ExceptionHandler({SQLException.class, CommunicationsException.class})
     public ResponseEntity<?> handleSQLException(SQLException exception) {

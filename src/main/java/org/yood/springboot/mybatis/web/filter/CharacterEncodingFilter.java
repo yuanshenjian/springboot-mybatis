@@ -23,6 +23,7 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         request.setCharacterEncoding(EncodingUtils.UTF_8);
         response.setCharacterEncoding(EncodingUtils.UTF_8);
+        LOGGER.info("request character encoding : {}", request.getCharacterEncoding());
         filterChain.doFilter(request, response);
     }
 }

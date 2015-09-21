@@ -30,7 +30,7 @@ public class UserServiceTest {
         user.setPassword("000");
         userService.add(user);
         userService.add(user);
-        verify(userMapper, times(3)).insert(user);
+        verify(userMapper, times(2)).insert(user);
     }
 
     @Test

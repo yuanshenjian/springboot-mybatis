@@ -1,12 +1,20 @@
 package org.yood.springboot.mybatis.entity;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
 public class User implements Serializable {
 
+    @NotNull
+    @Size(min = 3, max = 55)
     private String name;
+
+    @NotNull
+    @Size(min = 3, max = 30, message = "validation.password.length_error")
     private String password;
+
     private Sex sex;
     private List<Authority.Role> roles;
 

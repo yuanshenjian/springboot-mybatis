@@ -6,6 +6,7 @@ import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,6 +18,10 @@ import org.yood.springboot.mybatis.service.AuthenticateService;
 @EnableWebMvcSecurity
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+
+    @Autowired
+    private Environment environment;
 
     @Autowired
     private AuthenticateService authenticateService;
@@ -45,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public ServletContextInitializer servletContextInitializer() {
-        return servletContext -> servletContext.getSessionCookieConfig().setName("Y_JSESSIONID");
+        return servletContext -> servletContext.getSessionCookieConfig()
+                .setName(environment.getProperty("cookie.session-id"));
     }
 }
