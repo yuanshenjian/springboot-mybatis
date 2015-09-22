@@ -22,7 +22,7 @@ public class SpringBootMybatisApplicationTests extends BasicIntegrationTest {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.TEXT_HTML));
         ResponseEntity<String> entity = get("", headers, String.class);
-        assertEquals(HttpStatus.OK, entity.getStatusCode());
+        assertEquals(HttpStatus.FOUND, entity.getStatusCode());
     }
 
     @Test

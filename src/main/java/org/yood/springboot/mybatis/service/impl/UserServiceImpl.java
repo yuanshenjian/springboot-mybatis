@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -32,14 +33,12 @@ public class UserServiceImpl implements UserService {
     private AuthorityMapper authorityMapper;
 
     @Override
-    @Transactional
     public void add(User user) throws SQLException {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userMapper.insert(user);
     }
 
     @Override
-    @Transactional
     public void update(User user) throws SQLException {
         userMapper.update(user);
     }

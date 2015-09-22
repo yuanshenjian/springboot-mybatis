@@ -5,9 +5,9 @@ import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -17,7 +17,7 @@ import org.yood.springboot.mybatis.web.exception.GlobalExceptionHandlerControlle
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public abstract class BasicMockMvcTest {
 
     @Rule

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
-public class SpringBootMybatisApplication{
+public class SpringBootMybatisApplication {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpringBootMybatisApplication.class);
 

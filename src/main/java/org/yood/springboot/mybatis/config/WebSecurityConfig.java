@@ -1,12 +1,12 @@
 package org.yood.springboot.mybatis.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,10 +20,11 @@ import org.yood.springboot.mybatis.service.UserService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private Environment environment;
-
-    @Autowired
     private UserService userService;
+
+    @Value("${cookie.session-id}")
+    private String cookieSessionId;
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -49,7 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public ServletContextInitializer servletContextInitializer() {
-        return servletContext -> servletContext.getSessionCookieConfig()
-                .setName(environment.getProperty("cookie.session-id"));
+        return servletContext -> servletContext.getSessionCookieConfig().setName(cookieSessionId);
     }
 }

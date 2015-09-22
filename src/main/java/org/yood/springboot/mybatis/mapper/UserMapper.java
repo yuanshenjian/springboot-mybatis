@@ -10,10 +10,10 @@ import java.util.List;
 
 public interface UserMapper {
 
-    @Insert("insert into sbm_user(name,password,sex) values(#{name},#{password},#{sex})")
+    @Insert("insert into sbm_user(name, password, sex) values(#{name}, #{password}, #{sex})")
     void insert(User user) throws SQLException;
 
-    @Update("update sbm_user set sex=#{sex} where name=#{name}")
+    @Update("update sbm_user set sex=#{sex}, password=#{password} where name=#{name}")
     void update(User user) throws SQLException;
 
     @Select("select * from sbm_user")
