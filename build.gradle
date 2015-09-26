@@ -41,7 +41,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compile 'org.springframework.boot:spring-boot-starter-security'
     compile 'org.springframework.boot:spring-boot-starter-jdbc'
-    compile 'org.springframework.boot:spring-boot-configuration-processor'
+    compile 'org.springframework.boot:spring-bo ot-configuration-processor'
     compile 'org.mybatis:mybatis:3.2.4'
     compile 'org.mybatis:mybatis-spring:1.2.2'
     compile 'org.apache.tomcat:tomcat-jdbc:7.0.50'
