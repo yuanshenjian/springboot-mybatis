@@ -17,17 +17,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SpringBootMybatisApplication.class)
 @WebAppConfiguration
 @IntegrationTest({"server.port:0", "server.context-path:/sbm"})
-@Transactional
-@TransactionConfiguration(defaultRollback = true)
 public class BasicIntegrationTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BasicIntegrationTest.class);
@@ -66,6 +62,11 @@ public class BasicIntegrationTest {
                                          Object... uriVariables) {
         return testRestTemplate.exchange(makeURL(uri), HttpMethod.POST, new HttpEntity<>(body, httpHeaders),
                                          responseType, uriVariables);
+    }
+
+    protected <T> ResponseEntity<T> post(String uri, HttpEntity<T> httpEntity, Class<T> responseType,
+                                         Object... uriVariables) {
+        return testRestTemplate.exchange(makeURL(uri), HttpMethod.POST, httpEntity, responseType, uriVariables);
     }
 
     protected <T> ResponseEntity<T> get(String uri, HttpHeaders httpHeaders, Class<T> responseType,
