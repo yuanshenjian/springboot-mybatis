@@ -10,12 +10,10 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.yood.springboot.mybatis.service.UserService;
 
 @Configuration
-@EnableWebMvcSecurity
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -28,7 +26,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.headers()
+                .cacheControl()
+                .and()
+                .contentTypeOptions()
+                .and()
+                .frameOptions()
+                .and()
+                .xssProtection()
+                .and()
+                .httpStrictTransportSecurity()
+                .and()
+                .and()
+                .authorizeRequests()
                 .antMatchers("/css/**")
                 .permitAll()
                 .anyRequest()
