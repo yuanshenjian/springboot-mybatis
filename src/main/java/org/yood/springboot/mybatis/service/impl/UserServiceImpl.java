@@ -43,7 +43,6 @@ public class UserServiceImpl implements UserService {
         userMapper.update(user);
     }
 
-
     @Override
     public List<User> getAll() throws SQLException {
         return userMapper.selectAll();
