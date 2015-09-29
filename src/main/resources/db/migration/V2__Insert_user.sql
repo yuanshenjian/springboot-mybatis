@@ -1,7 +1,9 @@
-INSERT INTO sbm_user (name, sex) VALUES ("sjyuan", 'MALE');
-INSERT INTO sbm_user (name, sex) VALUES ("Juntao Qiu", 'MALE');
-INSERT INTO sbm_user (name, sex) VALUES ("Dong Yang", 'MALE');
-INSERT INTO sbm_user (name, sex) VALUES ("Hai Dong", 'MALE');
-INSERT INTO sbm_user (name, sex) VALUES ("Chanchan Yu", 'FEMALE');
-INSERT INTO sbm_user (name, sex) VALUES ("Siyu Xia", 'FEMALE');
-INSERT INTO sbm_user (name, sex) VALUES ("Wenbo Zhao", 'MALE');
+INSERT INTO sbm_user (name, password, phone, sex, age)
+VALUES ('sjyuan', '$2a$10$UH90u3QC2srw1XUEGrG5XuywfwERy/r8f5tPiwjaq8eNbjQBU.trK', '18192235667', 'MALE', 25);
+
+INSERT INTO sbm_user (name, password, phone, sex, age)
+VALUES ('Chanchan Yu', '$2a$10$UH90u3QC2srw1XUEGrG5XuywfwERy/r8f5tPiwjaq8eNbjQBU.trK',
+        '18192235667', 'FEMALE', 27);
+
+INSERT INTO sbm_user (name, password, phone, sex, age)
+VALUES ('Hai Dong', '$2a$10$UH90u3QC2srw1XUEGrG5XuywfwERy/r8f5tPiwjaq8eNbjQBU.trK', '18192235667', 'MALE', 28);

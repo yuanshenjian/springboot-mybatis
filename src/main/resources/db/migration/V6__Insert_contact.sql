@@ -1,3 +1,4 @@
-INSERT INTO sbm_contact(user_id,username,age,address) VALUES (1,"Haidong Zhang",28,"曲江");
-INSERT INTO sbm_contact(user_id,username,age,address) VALUES (1,"Wenbo Zhao",29,"电视塔");
-INSERT INTO sbm_contact(user_id,username,age,address) VALUES (1,"Dong Yang",30,"东郊");
+INSERT INTO sbm_contact (username, name, age, phone, address)
+VALUES ('sjyuan', 'Haidong Zhang', 28, '18192235667', '曲江');
+INSERT INTO sbm_contact (username, name, age, phone, address)
+VALUES ('sjyuan', 'Chanchan Yu', 29, '18192235667', '电视塔');

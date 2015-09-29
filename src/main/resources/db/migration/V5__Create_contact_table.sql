@@ -1,8 +1,9 @@
 CREATE TABLE sbm_contact (
-  id       INT AUTO_INCREMENT,
-  user_id  INT,
   username VARCHAR(55),
-  age      INT,
+  name     VARCHAR(55),
+  phone    VARCHAR(15),
   address  VARCHAR(100),
-  PRIMARY KEY (id)
+  age      INT,
+  FOREIGN KEY (username) REFERENCES SBM_USER (name),
+  UNIQUE INDEX sbm_contact_index (username, name)
 )
