@@ -59,7 +59,7 @@ public class UserControllerTest extends BasicMockMvcTest {
     public void testAdd() throws Exception {
         User user = new User();
         user.setName("Shenjian,Yuan");
-        user.setAge(25);
+        user.setAge(4);
         user.setSex(User.Sex.MALE);
         mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isOk());
     }

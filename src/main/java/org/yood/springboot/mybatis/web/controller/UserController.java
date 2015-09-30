@@ -7,12 +7,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.yood.springboot.mybatis.entity.User;
 import org.yood.springboot.mybatis.service.UserService;
+import org.yood.springboot.mybatis.web.exception.BusinessException;
+import org.yood.springboot.mybatis.web.exception.ExceptionBody;
 import org.yood.springboot.mybatis.web.exception.UnAuthorizedException;
 
 import javax.validation.Valid;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -47,11 +50,24 @@ public class UserController {
 
     @RequestMapping(value = "users",
                     method = RequestMethod.POST)
-    public ResponseEntity<?> add(@Valid @RequestBody User user,BindingResult bindingResult) throws SQLException, UnAuthorizedException {
+    public ResponseEntity<?> add(@Valid @RequestBody User user,
+                                 BindingResult bindingResult) throws SQLException, UnAuthorizedException,
+                                                                     BusinessException {
+        processValidateResult(bindingResult);
         if (StringUtils.isEmpty(user.getName()) || StringUtils.isEmpty(user.getSex())) {
             throw UnAuthorizedException.newInstance();
         }
         userService.add(user);
         return ResponseEntity.ok().build();
+    }
+
+    public void processValidateResult(BindingResult bindingResult) throws BusinessException {
+        if (bindingResult.hasErrors()) {
+            List<ExceptionBody> exceptionBodies = bindingResult.getFieldErrors()
+                    .stream()
+                    .map(fieldError -> ExceptionBody.of(fieldError.getField(), fieldError.getDefaultMessage()))
+                    .collect(Collectors.toList());
+            throw BusinessException.fromException(exceptionBodies);
+        }
     }
 }

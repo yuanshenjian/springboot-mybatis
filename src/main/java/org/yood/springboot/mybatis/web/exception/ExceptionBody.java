@@ -4,20 +4,14 @@ package org.yood.springboot.mybatis.web.exception;
 public class ExceptionBody {
 
     private final String field;
-    private final ExceptionCode exceptionCode;
+    private final String exceptionCode;
 
-    public enum ExceptionCode {
-        EXISTED,
-        TOO_LARGE
-    }
-
-    private ExceptionBody(String field, ExceptionCode exceptionCode) {
+    private ExceptionBody(String field, String exceptionCode) {
         this.field = field;
         this.exceptionCode = exceptionCode;
     }
 
-
-    public static ExceptionBody of(String field, ExceptionCode exceptionCode) {
+    public static ExceptionBody of(String field, String exceptionCode) {
         return new ExceptionBody(field, exceptionCode);
     }
 
@@ -25,7 +19,7 @@ public class ExceptionBody {
         return field;
     }
 
-    public ExceptionCode getExceptionCode() {
+    public String getExceptionCode() {
         return exceptionCode;
     }
 

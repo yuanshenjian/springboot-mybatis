@@ -1,5 +1,7 @@
 package org.yood.springboot.mybatis.entity;
 
+import org.yood.springboot.mybatis.web.exception.ExceptionCode;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -9,13 +11,13 @@ import java.util.List;
 
 public class User implements Serializable {
 
-    @Size(min = 3, max = 55)
+    @Size(min = 3, max = 55, message = ExceptionCode.Validation.NAME_LENGTH_OUT_OF_RANGE)
     private String name;
 
-    @Size(min = 3, max = 30)
+    @Size(min = 3, max = 30, message = ExceptionCode.Validation.PASSWORD_LENGTH_OUT_OF_RANGE)
     private String password;
 
-    @Size(min = 7, max = 15)
+    @Size(min = 7, max = 15, message = ExceptionCode.Validation.PHONE_LENGTH_OUT_OF_RANGE)
     private String phone;
 
     @Min(value = 5)

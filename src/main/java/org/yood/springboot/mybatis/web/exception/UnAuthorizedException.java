@@ -12,7 +12,6 @@ public class UnAuthorizedException extends Exception {
         return new UnAuthorizedException();
     }
 
-
     public UnAuthorizedException responseBody(Object responseBody) {
         this.responseBody = responseBody;
         return this;
