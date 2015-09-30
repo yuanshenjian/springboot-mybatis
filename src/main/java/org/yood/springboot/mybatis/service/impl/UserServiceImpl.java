@@ -50,7 +50,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getLoginUser(String username, String password) {
-        User loginUser = new User(username);
+        User loginUser = new User();
+        loginUser.setName(username);
         return loginUser;
     }
 

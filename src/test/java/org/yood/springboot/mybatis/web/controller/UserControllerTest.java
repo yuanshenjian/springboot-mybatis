@@ -34,7 +34,8 @@ public class UserControllerTest extends BasicMockMvcTest {
 
     @Test
     public void testGet() throws Exception {
-        User user = new User("Shenjian");
+        User user = new User();
+        user.setName("Shenjian");
         when(userService.getByUserName(anyString())).thenReturn(user);
         mockGet("/users/1", MediaType.APPLICATION_JSON).andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -43,8 +44,10 @@ public class UserControllerTest extends BasicMockMvcTest {
 
     @Test
     public void testGetAll() throws Exception {
-        User user1 = new User("ShenjianYuan1");
-        User user2 = new User("ShenjianYuan2");
+        User user1 = new User();
+        user1.setName("ShenjianYuan1");
+        User user2 = new User();
+        user2.setName("ShenjianYuan2");
         when(userService.getAll()).thenReturn(Arrays.asList(user1, user2));
         mockGet("/users", MediaType.APPLICATION_JSON).andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -54,14 +57,16 @@ public class UserControllerTest extends BasicMockMvcTest {
 
     @Test
     public void testAdd() throws Exception {
-        User user = new User("Shenjian,Yuan");
+        User user = new User();
+        user.setName("Shenjian,Yuan");
         user.setSex(User.Sex.MALE);
         mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isOk());
     }
 
     @Test
     public void testUpdate() throws Exception {
-        User user = new User("Shenjian,Yuan");
+        User user = new User();
+        user.setName("Shenjian,Yuan");
         mockPut("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isOk());
         verify(userService,times(1)).update(any(User.class));
     }

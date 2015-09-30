@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - spring_boot_mybatis@localhost" uuid="c8a8e0c4-9fc2-4342-be5c-0b26fe703034">
+    <database-info product="MySQL" version="5.6.25" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <schema name="" catalog="spring_boot_mybatis"/>
+    <table name="sbm_authority" schema="" catalog="spring_boot_mybatis" type="TABLE">
+      <column name="username" sqlType="VARCHAR" precision="55" scale="0" nullable="true" jdbcType="12"/>
+      <column name="role" sqlType="ENUM" precision="6" scale="0" nullable="true" jdbcType="1"/>
+      <foreign-key name="sbm_authority_ibfk_1" columns="username" ref-table="SBM_USER" ref-schema="" ref-catalog="spring_boot_mybatis" ref-columns="name" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="sbm_authority_index" unique="true" columns="username,role"/>
+    </table>
+    <table name="sbm_contact" schema="" catalog="spring_boot_mybatis" type="TABLE">
+      <column name="username" sqlType="VARCHAR" precision="55" scale="0" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="55" scale="0" nullable="true" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="address" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <foreign-key name="sbm_contact_ibfk_1" columns="username" ref-table="SBM_USER" ref-schema="" ref-catalog="spring_boot_mybatis" ref-columns="name" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="sbm_contact_index" unique="true" columns="username,name"/>
+    </table>
+    <table name="sbm_user" schema="" catalog="spring_boot_mybatis" type="TABLE">
+      <column name="name" sqlType="VARCHAR" precision="55" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sex" sqlType="ENUM" precision="6" scale="0" nullable="true" jdbcType="1"/>
+      <column name="phone" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="name"/>
+      <exported-key name="sbm_authority_ibfk_1" table="sbm_authority" schema="" catalog="spring_boot_mybatis" columns="username"/>
+      <exported-key name="sbm_contact_ibfk_1" table="sbm_contact" schema="" catalog="spring_boot_mybatis" columns="username"/>
+    </table>
+    <table name="schema_version" schema="" catalog="spring_boot_mybatis" type="TABLE">
+      <column name="version_rank" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="installed_rank" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="version" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="script" sqlType="VARCHAR" precision="1000" scale="0" nullable="false" jdbcType="12"/>
+      <column name="checksum" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="installed_by" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="installed_on" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="execution_time" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="success" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="version"/>
+      <index name="schema_version_ir_idx" unique="false" columns="installed_rank"/>
+      <index name="schema_version_s_idx" unique="false" columns="success"/>
+      <index name="schema_version_vr_idx" unique="false" columns="version_rank"/>
+    </table>
+  </data-source>
+</component>
