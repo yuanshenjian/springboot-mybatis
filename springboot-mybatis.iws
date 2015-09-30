@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f33707f-70c0-45da-acbb-30121faebc72" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/org/yood/springboot/mybatis/mapper/UserMapper.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/springboot-mybatis.iws" afterPath="$PROJECT_DIR$/springboot-mybatis.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yood/springboot/mybatis/mapper/UserMapper.java" afterPath="$PROJECT_DIR$/src/main/java/org/yood/springboot/mybatis/mapper/UserMapper.java" />
     </list>
     <ignored path="springboot-mybatis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -164,8 +163,8 @@
       <file leaf-file-name="UserMapper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/yood/springboot/mybatis/mapper/UserMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.098987624">
-              <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.3712036">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -714,6 +713,7 @@
         <option value="$PROJECT_DIR$/src/main/java/org/yood/springboot/mybatis/entity/User.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/yood/springboot/mybatis/web/controller/UserControllerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yood/springboot/mybatis/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/yood/springboot/mybatis/mapper/UserMapper.java" />
       </list>
     </option>
   </component>
@@ -1572,12 +1572,12 @@
       <created>1443580794386</created>
       <option name="number" value="Default" />
       <updated>1443580794386</updated>
-      <workItem from="1443580796245" duration="12840000" />
+      <workItem from="1443580796245" duration="13195000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12840000" />
+    <option name="totallyTimeSpent" value="13195000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1676" height="1027" extended-state="6" />
@@ -1952,8 +1952,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/yood/springboot/mybatis/mapper/UserMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.098987624">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.3712036">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>
