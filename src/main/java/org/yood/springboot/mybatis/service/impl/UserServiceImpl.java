@@ -39,20 +39,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User user) throws SQLException {
-        userMapper.update(user);
-    }
-
-    @Override
     public List<User> getAll() throws SQLException {
         return userMapper.selectAll();
-    }
-
-    @Override
-    public User getLoginUser(String username, String password) {
-        User loginUser = new User();
-        loginUser.setName(username);
-        return loginUser;
     }
 
     @Override

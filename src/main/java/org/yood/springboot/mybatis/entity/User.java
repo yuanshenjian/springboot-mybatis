@@ -1,5 +1,7 @@
 package org.yood.springboot.mybatis.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.yood.springboot.mybatis.web.exception.ExceptionCode;
 
 import javax.validation.constraints.Max;
@@ -11,10 +13,12 @@ import java.util.List;
 
 public class User implements Serializable {
 
+    @NotBlank
     @Size(min = 3, max = 55, message = ExceptionCode.Validation.NAME_LENGTH_OUT_OF_RANGE)
     private String name;
 
-    @Size(min = 3, max = 30, message = ExceptionCode.Validation.PASSWORD_LENGTH_OUT_OF_RANGE)
+    @NotBlank
+    @Size(min = 3, max = 255, message = ExceptionCode.Validation.PASSWORD_LENGTH_OUT_OF_RANGE)
     private String password;
 
     @Size(min = 7, max = 15, message = ExceptionCode.Validation.PHONE_LENGTH_OUT_OF_RANGE)
@@ -26,8 +30,9 @@ public class User implements Serializable {
 
     @NotNull
     private Sex sex;
-    private List<Authority.Role> roles;
 
+    @NotEmpty
+    private List<Authority.Role> roles;
 
     public enum Sex {
         MALE,

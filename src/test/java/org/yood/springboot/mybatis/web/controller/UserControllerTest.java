@@ -4,19 +4,24 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.yood.springboot.mybatis.BasicMockMvcTest;
+import org.yood.springboot.mybatis.entity.Authority;
 import org.yood.springboot.mybatis.entity.User;
 import org.yood.springboot.mybatis.service.UserService;
 import org.yood.springboot.mybatis.util.JSONUtils;
+import org.yood.springboot.mybatis.web.exception.ExceptionCode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 public class UserControllerTest extends BasicMockMvcTest {
@@ -35,40 +40,55 @@ public class UserControllerTest extends BasicMockMvcTest {
     @Test
     public void testGet() throws Exception {
         User user = new User();
-        user.setName("Shenjian");
+        user.setName("sjyuan");
+        user.setAge(25);
+        user.setSex(User.Sex.FEMALE);
         when(userService.getByUserName(anyString())).thenReturn(user);
-        mockGet("/users/1", MediaType.APPLICATION_JSON).andExpect(status().isOk())
-                .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andExpect(jsonPath("$.name", is("Shenjian")));
+        mockGet("/users/" + user.getName(), MediaType.APPLICATION_JSON).andExpect(status().isOk())
+                .andExpect(jsonPath("$.age", is(25)))
+                .andExpect(jsonPath("$.sex", is(User.Sex.FEMALE.name())))
+                .andExpect(jsonPath("$.name", is("sjyuan")));
+        verify(userService, times(1)).getByUserName(user.getName());
     }
 
     @Test
     public void testGetAll() throws Exception {
         User user1 = new User();
-        user1.setName("ShenjianYuan1");
+        user1.setName("sjyuan1");
         User user2 = new User();
-        user2.setName("ShenjianYuan2");
+        user2.setName("sjyuan2");
         when(userService.getAll()).thenReturn(Arrays.asList(user1, user2));
         mockGet("/users", MediaType.APPLICATION_JSON).andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].name", is("ShenjianYuan1")))
-                .andExpect(jsonPath("$[1].name", is("ShenjianYuan2")));
+                .andExpect(jsonPath("$[0].name", is("sjyuan1")))
+                .andExpect(jsonPath("$[1].name", is("sjyuan2")));
     }
 
     @Test
-    public void testAdd() throws Exception {
+    public void testAddSuccessfully() throws Exception {
         User user = new User();
-        user.setName("Shenjian,Yuan");
-        user.setAge(4);
+        user.setName("sjyuan");
+        user.setPassword(new BCryptPasswordEncoder().encode("000"));
+        user.setAge(25);
+        user.setPhone("18192235667");
         user.setSex(User.Sex.MALE);
+        List<Authority.Role> roles = new ArrayList<>();
+        roles.add(Authority.Role.ADMIN);
+        user.setRoles(roles);
         mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isOk());
     }
 
     @Test
-    public void testUpdate() throws Exception {
+    public void testAddWithNoAge() throws Exception {
         User user = new User();
-        user.setName("Shenjian,Yuan");
-        mockPut("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isOk());
-        verify(userService,times(1)).update(any(User.class));
+        user.setName("sjyuan");
+        user.setPassword(new BCryptPasswordEncoder().encode("000"));
+        user.setPhone("18192235667");
+        user.setSex(User.Sex.MALE);
+        List<Authority.Role> roles = new ArrayList<>();
+        roles.add(Authority.Role.ADMIN);
+        user.setRoles(roles);
+        mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isBadRequest
+                ()).andExpect(jsonPath("",is(ExceptionCode.)));
     }
 }

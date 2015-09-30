@@ -11,11 +11,7 @@ public interface UserService extends UserDetailsService{
 
     void add(User user) throws SQLException;
 
-    void update(User user) throws SQLException;
-
     List<User> getAll() throws SQLException;
-
-    User getLoginUser(String username, String password);
 
     User getByUserName(String username) throws SQLException;
 }

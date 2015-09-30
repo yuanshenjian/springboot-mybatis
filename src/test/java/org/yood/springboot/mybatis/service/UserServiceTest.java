@@ -36,12 +36,6 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testUpdate() throws Exception {
-        userService.update(null);
-        verify(userMapper, times(1)).update(null);
-    }
-
-    @Test
     public void testGet() throws Exception {
         User user = new User();
         when(userMapper.selectByName(anyString())).thenReturn(user);

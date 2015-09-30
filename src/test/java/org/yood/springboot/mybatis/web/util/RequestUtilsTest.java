@@ -20,7 +20,6 @@ public class RequestUtilsTest {
         request.setContextPath(CONTEXT_PATH);
     }
 
-
     @Test
     public void testGetRequestURIWithoutContextPath() throws Exception {
         request.setRequestURI("/sbm/users/");

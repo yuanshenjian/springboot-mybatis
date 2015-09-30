@@ -11,7 +11,6 @@ public class BusinessException extends Exception {
 
     private final List<ExceptionBody> exceptionBodies = new ArrayList<>();
 
-
     public static BusinessException fromException(ExceptionBody... exceptionBodies) {
         BusinessException exception = new BusinessException();
         Collections.addAll(exception.getExceptionBodies(), exceptionBodies);

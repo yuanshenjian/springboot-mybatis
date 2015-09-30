@@ -41,14 +41,6 @@ public class UserController {
     }
 
     @RequestMapping(value = "users",
-                    method = RequestMethod.PUT)
-    public ResponseEntity<?> update(@Valid @RequestBody User user,
-                                    BindingResult bindingResult) throws UnAuthorizedException, SQLException {
-        userService.update(user);
-        return ResponseEntity.ok().build();
-    }
-
-    @RequestMapping(value = "users",
                     method = RequestMethod.POST)
     public ResponseEntity<?> add(@Valid @RequestBody User user,
                                  BindingResult bindingResult) throws SQLException, UnAuthorizedException,

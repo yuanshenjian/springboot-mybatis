@@ -40,7 +40,7 @@ public class SpringBootMybatisApplicationTests extends BasicIntegrationTest {
         headers.setAccept(Arrays.asList(MediaType.TEXT_HTML));
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
-        form.set("username", "admin");
+        form.set("username", "sjyuan");
         form.set("password", "000");
         ResponseEntity<String> entity = post("/login", form, headers, String.class);
         assertEquals(HttpStatus.FOUND, entity.getStatusCode());
