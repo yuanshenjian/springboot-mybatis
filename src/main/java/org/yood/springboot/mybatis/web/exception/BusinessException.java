@@ -9,7 +9,7 @@ public class BusinessException extends Exception {
     private BusinessException() {
     }
 
-    private final List<ExceptionBody> EXCEPTION_BODIES = new ArrayList<>();
+    private final List<ExceptionBody> exceptionBodies = new ArrayList<>();
 
 
     public static BusinessException fromException(ExceptionBody... exceptionBodies) {
@@ -18,7 +18,11 @@ public class BusinessException extends Exception {
         return exception;
     }
 
+    public static BusinessException fromException(List<ExceptionBody> exceptionBodies) {
+        return fromException(exceptionBodies.toArray(new ExceptionBody[0]));
+    }
+
     public List<ExceptionBody> getExceptionBodies() {
-        return EXCEPTION_BODIES;
+        return exceptionBodies;
     }
 }

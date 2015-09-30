@@ -18,11 +18,10 @@ public class GlobalExceptionHandlerControllerAdvice {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandlerControllerAdvice.class);
 
+    @ResponseStatus(HttpStatus.REQUEST_TIMEOUT)
     @ExceptionHandler({SQLException.class, CommunicationsException.class})
-    public ResponseEntity<?> handleSQLException(SQLException exception) {
+    public void handleSQLException(SQLException exception) {
         LOGGER.error("SQLException", exception);
-        ExceptionBody errorBody = new ExceptionBody(ExceptionBody.KEY_SYSTEM, ExceptionBody.SystemErrorType.BUSY);
-        return ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).body(errorBody);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

@@ -3,46 +3,30 @@ package org.yood.springboot.mybatis.web.exception;
 
 public class ExceptionBody {
 
-    public static final String KEY_SYSTEM = "_system";
-
     private final String field;
-    private final BusinessExceptionType businessExceptionType;
-    private final SystemErrorType systemErrorType;
+    private final ExceptionCode exceptionCode;
 
-    public enum BusinessExceptionType {
+    public enum ExceptionCode {
         EXISTED,
         TOO_LARGE
     }
 
-    public enum SystemErrorType {
-        BUSY
-    }
-
-    private ExceptionBody(String field, BusinessExceptionType businessErrorType) {
+    private ExceptionBody(String field, ExceptionCode exceptionCode) {
         this.field = field;
-        this.businessExceptionType = businessErrorType;
-        systemErrorType = null;
+        this.exceptionCode = exceptionCode;
     }
 
-    public ExceptionBody(String field, SystemErrorType systemErrorType) {
-        this.field = field;
-        this.systemErrorType = systemErrorType;
-        businessExceptionType = null;
-    }
 
-    public static ExceptionBody of(String field, BusinessExceptionType exceptionType) {
-        return new ExceptionBody(field, exceptionType);
+    public static ExceptionBody of(String field, ExceptionCode exceptionCode) {
+        return new ExceptionBody(field, exceptionCode);
     }
 
     public String getField() {
         return field;
     }
 
-    public BusinessExceptionType getBusinessExceptionType() {
-        return businessExceptionType;
+    public ExceptionCode getExceptionCode() {
+        return exceptionCode;
     }
 
-    public SystemErrorType getSystemErrorType() {
-        return systemErrorType;
-    }
 }
