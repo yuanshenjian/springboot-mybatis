@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -62,6 +62,7 @@ public class UserControllerTest extends BasicMockMvcTest {
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", is("sjyuan1")))
                 .andExpect(jsonPath("$[1].name", is("sjyuan2")));
+        verify(userService, times(1)).getAll();
     }
 
     @Test
@@ -76,6 +77,7 @@ public class UserControllerTest extends BasicMockMvcTest {
         roles.add(Authority.Role.ADMIN);
         user.setRoles(roles);
         mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isOk());
+        verify(userService, times(1)).add(any(User.class));
     }
 
     @Test
@@ -89,6 +91,8 @@ public class UserControllerTest extends BasicMockMvcTest {
         roles.add(Authority.Role.ADMIN);
         user.setRoles(roles);
         mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isBadRequest())
-                .andExpect(jsonPath("", is(ExceptionCode.Validation.PHONE_LENGTH_OUT_OF_RANGE)));
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].exceptionCode", is(ExceptionCode.Validation.AGE_TOO_YOUNG)));
+        verify(userService, never()).add(user);
     }
 }

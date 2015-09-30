@@ -24,8 +24,8 @@ public class User implements Serializable {
     @Size(min = 7, max = 15, message = ExceptionCode.Validation.PHONE_LENGTH_OUT_OF_RANGE)
     private String phone;
 
-    @Min(value = 5)
-    @Max(100)
+    @Min(value = 5, message = ExceptionCode.Validation.AGE_TOO_YOUNG)
+    @Max(value = 100, message = ExceptionCode.Validation.AGE_TOO_OLD)
     private int age;
 
     @NotNull
@@ -85,17 +85,5 @@ public class User implements Serializable {
 
     public void setRoles(List<Authority.Role> roles) {
         this.roles = roles;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                ", sex=" + sex +
-                ", age=" + age +
-                ", roles=" + roles +
-                '}';
     }
 }

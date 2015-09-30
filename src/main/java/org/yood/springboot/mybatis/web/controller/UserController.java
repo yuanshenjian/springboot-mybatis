@@ -2,7 +2,6 @@ package org.yood.springboot.mybatis.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.yood.springboot.mybatis.entity.User;
@@ -46,9 +45,6 @@ public class UserController {
                                  BindingResult bindingResult) throws SQLException, UnAuthorizedException,
                                                                      BusinessException {
         processValidateResult(bindingResult);
-        if (StringUtils.isEmpty(user.getName()) || StringUtils.isEmpty(user.getSex())) {
-            throw UnAuthorizedException.newInstance();
-        }
         userService.add(user);
         return ResponseEntity.ok().build();
     }
