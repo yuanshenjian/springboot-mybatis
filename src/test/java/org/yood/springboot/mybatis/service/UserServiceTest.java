@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 public class UserServiceTest {
 
     @InjectMocks
-    private UserService userService =  new UserServiceImpl();
+    private UserService userService = new UserServiceImpl();
 
     @Mock
     private UserMapper userMapper;

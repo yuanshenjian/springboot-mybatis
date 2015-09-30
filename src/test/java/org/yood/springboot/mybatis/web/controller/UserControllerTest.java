@@ -88,7 +88,7 @@ public class UserControllerTest extends BasicMockMvcTest {
         List<Authority.Role> roles = new ArrayList<>();
         roles.add(Authority.Role.ADMIN);
         user.setRoles(roles);
-        mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isBadRequest
-                ()).andExpect(jsonPath("",is(ExceptionCode.)));
+        mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isBadRequest())
+                .andExpect(jsonPath("", is(ExceptionCode.Validation.PHONE_LENGTH_OUT_OF_RANGE)));
     }
 }

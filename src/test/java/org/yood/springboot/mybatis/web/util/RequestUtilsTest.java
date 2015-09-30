@@ -42,7 +42,7 @@ public class RequestUtilsTest {
 
     @Test
     public void testIsLoginWithSlash() throws Exception {
-        request.setRequestURI(CONTEXT_PATH + RequestUtils.LOGIN+"/");
+        request.setRequestURI(CONTEXT_PATH + RequestUtils.LOGIN + "/");
         request.setMethod(RequestMethod.POST.name());
         assertTrue(RequestUtils.isLogin(request));
     }

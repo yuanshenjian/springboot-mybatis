@@ -11,6 +11,7 @@ public class Authority implements Serializable {
         ADMIN,
         USER
     }
+
     public Role getRole() {
         return role;
     }
