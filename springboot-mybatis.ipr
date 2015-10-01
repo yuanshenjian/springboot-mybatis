@@ -20,7 +20,7 @@
     </annotationProcessing>
   </component>
   <component name="CopyrightManager" default="" />
-  <component name="DataSourceManagerImpl" format="xml" hash="707903755">
+  <component name="DataSourceManagerImpl" format="xml" hash="383263279">
     <data-source source="LOCAL" name="MySQL - spring_boot_mybatis@localhost" uuid="c8a8e0c4-9fc2-4342-be5c-0b26fe703034">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>

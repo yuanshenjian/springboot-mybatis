@@ -18,6 +18,7 @@
       <column name="name" sqlType="VARCHAR" precision="55" scale="0" nullable="true" jdbcType="12"/>
       <column name="phone" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
       <column name="address" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sex" sqlType="ENUM" precision="6" scale="0" nullable="true" jdbcType="1"/>
       <column name="age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <foreign-key name="sbm_contact_ibfk_1" columns="username" ref-table="SBM_USER" ref-schema="" ref-catalog="spring_boot_mybatis" ref-columns="name" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="sbm_contact_index" unique="true" columns="username,name"/>

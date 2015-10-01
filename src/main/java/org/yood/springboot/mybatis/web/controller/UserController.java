@@ -9,8 +9,8 @@ import org.yood.springboot.mybatis.service.UserService;
 import org.yood.springboot.mybatis.web.exception.BusinessException;
 import org.yood.springboot.mybatis.web.exception.ExceptionBody;
 import org.yood.springboot.mybatis.web.exception.UnAuthorizedException;
+import org.yood.springboot.mybatis.web.validator.UserValidator;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,6 +22,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserValidator userValidator;
 
     @RequestMapping(value = "users/{username}",
                     method = RequestMethod.GET)
@@ -41,9 +44,10 @@ public class UserController {
 
     @RequestMapping(value = "users",
                     method = RequestMethod.POST)
-    public ResponseEntity<?> add(@Valid @RequestBody User user,
+    public ResponseEntity<?> add(@RequestBody User user,
                                  BindingResult bindingResult) throws SQLException, UnAuthorizedException,
                                                                      BusinessException {
+        userValidator.validate(user, bindingResult);
         processValidateResult(bindingResult);
         userService.add(user);
         return ResponseEntity.ok().build();

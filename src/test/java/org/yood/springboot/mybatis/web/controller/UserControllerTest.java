@@ -5,18 +5,20 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.validation.Errors;
 import org.yood.springboot.mybatis.BasicMockMvcTest;
 import org.yood.springboot.mybatis.entity.Authority;
 import org.yood.springboot.mybatis.entity.User;
 import org.yood.springboot.mybatis.service.UserService;
 import org.yood.springboot.mybatis.util.JSONUtils;
-import org.yood.springboot.mybatis.web.exception.ExceptionCode;
+import org.yood.springboot.mybatis.web.validator.UserValidator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
@@ -28,6 +30,9 @@ public class UserControllerTest extends BasicMockMvcTest {
 
     @Mock
     private UserService userService;
+
+    @Mock
+    private UserValidator userValidator;
 
     @InjectMocks
     private UserController userController;
@@ -67,6 +72,7 @@ public class UserControllerTest extends BasicMockMvcTest {
 
     @Test
     public void testAddSuccessfully() throws Exception {
+
         User user = new User();
         user.setName("sjyuan");
         user.setPassword(new BCryptPasswordEncoder().encode("000"));
@@ -76,23 +82,8 @@ public class UserControllerTest extends BasicMockMvcTest {
         List<Authority.Role> roles = new ArrayList<>();
         roles.add(Authority.Role.ADMIN);
         user.setRoles(roles);
+        doCallRealMethod().when(userValidator).validate(any(User.class), any(Errors.class));
         mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isOk());
-        verify(userService, times(1)).add(any(User.class));
-    }
-
-    @Test
-    public void testAddWithNoAge() throws Exception {
-        User user = new User();
-        user.setName("sjyuan");
-        user.setPassword(new BCryptPasswordEncoder().encode("000"));
-        user.setPhone("18192235667");
-        user.setSex(User.Sex.MALE);
-        List<Authority.Role> roles = new ArrayList<>();
-        roles.add(Authority.Role.ADMIN);
-        user.setRoles(roles);
-        mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].exceptionCode", is(ExceptionCode.Validation.AGE_TOO_YOUNG)));
-        verify(userService, never()).add(user);
+        verify(userService).add(any(User.class));
     }
 }
