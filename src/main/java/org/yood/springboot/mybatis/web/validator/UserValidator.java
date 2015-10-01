@@ -19,19 +19,19 @@ public class UserValidator implements Validator {
     public void validate(Object target, Errors errors) {
         User user = (User) target;
         if (StringUtils.isEmpty(user.getName()) || !user.getName().matches("[\\w]{3,55}")) {
-            errors.reject("name", ExceptionCode.Validation.NAME_LENGTH_OUT_OF_RANGE);
+            errors.rejectValue("name", ExceptionCode.Validation.NAME_LENGTH_OUT_OF_RANGE);
         }
         if (null != user.getPhone() && !user.getPhone().matches("\\d{7,15}")) {
-            errors.reject("phone", ExceptionCode.Validation.PHONE_LENGTH_OUT_OF_RANGE);
+            errors.rejectValue("phone", ExceptionCode.Validation.PHONE_LENGTH_OUT_OF_RANGE);
         }
         if (!user.getPassword().matches(".{3,255}")) {
-            errors.reject("password", ExceptionCode.Validation.PASSWORD_LENGTH_OUT_OF_RANGE);
+            errors.rejectValue("password", ExceptionCode.Validation.PASSWORD_LENGTH_OUT_OF_RANGE);
         }
         if (user.getAge() < 3) {
-            errors.reject("age", ExceptionCode.Validation.AGE_TOO_YOUNG);
+            errors.rejectValue("age", ExceptionCode.Validation.AGE_TOO_YOUNG);
         }
         if (user.getAge() > 100) {
-            errors.reject("age", ExceptionCode.Validation.AGE_TOO_OLD);
+            errors.rejectValue("age", ExceptionCode.Validation.AGE_TOO_OLD);
         }
     }
 }

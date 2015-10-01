@@ -57,7 +57,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             List<ExceptionBody> exceptionBodies = bindingResult.getFieldErrors()
                     .stream()
-                    .map(fieldError -> ExceptionBody.of(fieldError.getField(), fieldError.getDefaultMessage()))
+                    .map(fieldError -> ExceptionBody.of(fieldError.getField(), fieldError.getCode()))
                     .collect(Collectors.toList());
             throw BusinessException.fromException(exceptionBodies);
         }
