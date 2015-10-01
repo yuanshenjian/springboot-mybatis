@@ -11,8 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.yood.springboot.mybatis.SpringBootMybatisApplication;
 import org.yood.springboot.mybatis.entity.User;
 
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -34,18 +32,6 @@ public class UserMapperTest {
         user.setSex(User.Sex.MALE);
         userMapper.insert(user);
         assertEquals(preSize + 1, userMapper.selectAll().size());
-    }
-
-    @Test
-    public void testUpdate() throws Exception {
-        List<User> all = userMapper.selectAll();
-        if (all.size() > 0) {
-            User user = all.get(0);
-            user.setSex(User.Sex.FEMALE);
-            userMapper.update(user);
-            assertEquals(user.getSex(), userMapper.selectByName(user.getName()).getSex());
-        }
-        userMapper.update(null);
     }
 
     @Test(expected = NullPointerException.class)
