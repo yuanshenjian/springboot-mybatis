@@ -9,7 +9,6 @@ import org.yood.springboot.mybatis.web.exception.ExceptionCode;
 @Component
 public class UserValidator extends GenericValidator<User> {
 
-
     @Override
     public Class<User> supportClass() {
         return User.class;
