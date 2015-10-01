@@ -72,7 +72,6 @@ public class UserControllerTest extends BasicMockMvcTest {
 
     @Test
     public void testAddSuccessfully() throws Exception {
-
         User user = new User();
         user.setName("sjyuan");
         user.setPassword(new BCryptPasswordEncoder().encode("000"));

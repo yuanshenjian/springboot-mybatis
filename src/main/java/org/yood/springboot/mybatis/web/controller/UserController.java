@@ -48,12 +48,12 @@ public class UserController {
                                  BindingResult bindingResult) throws SQLException, UnAuthorizedException,
                                                                      BusinessException {
         userValidator.validate(user, bindingResult);
-        processValidateResult(bindingResult);
+        processValidatorResult(bindingResult);
         userService.add(user);
         return ResponseEntity.ok().build();
     }
 
-    public void processValidateResult(BindingResult bindingResult) throws BusinessException {
+    public void processValidatorResult(BindingResult bindingResult) throws BusinessException {
         if (bindingResult.hasErrors()) {
             List<ExceptionBody> exceptionBodies = bindingResult.getFieldErrors()
                     .stream()

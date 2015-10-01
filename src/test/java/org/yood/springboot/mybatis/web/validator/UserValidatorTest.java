@@ -10,8 +10,8 @@ import org.yood.springboot.mybatis.entity.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class UserValidatorTest {
 
@@ -25,17 +25,12 @@ public class UserValidatorTest {
     }
 
     @Test
-    public void testSupports() throws Exception {
-        assertTrue(userValidator.supports(User.class));
+    public void testSetSupportClass() throws Exception {
+        assertEquals(User.class, userValidator.supportClass());
     }
 
     @Test
-    public void testSupportsValid() throws Exception {
-        assertFalse(userValidator.supports(Object.class));
-    }
-
-    @Test
-    public void testValidateWhenValidUser() throws Exception {
+    public void testValidateTarget() throws Exception {
         User user = new User();
         user.setName("sjyuan");
         user.setPassword(new BCryptPasswordEncoder().encode("000"));

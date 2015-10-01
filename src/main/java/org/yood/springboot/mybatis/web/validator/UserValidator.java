@@ -3,21 +3,20 @@ package org.yood.springboot.mybatis.web.validator;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 import org.yood.springboot.mybatis.entity.User;
 import org.yood.springboot.mybatis.web.exception.ExceptionCode;
 
 @Component
-public class UserValidator implements Validator {
+public class UserValidator extends GenericValidator<User> {
+
 
     @Override
-    public boolean supports(Class<?> clazz) {
-        return User.class.equals(clazz);
+    public Class<User> supportClass() {
+        return User.class;
     }
 
     @Override
-    public void validate(Object target, Errors errors) {
-        User user = (User) target;
+    public void validateTarget(User user, Errors errors) {
         if (StringUtils.isEmpty(user.getName()) || !user.getName().matches("[\\w]{3,55}")) {
             errors.rejectValue("name", ExceptionCode.Validation.NAME_LENGTH_OUT_OF_RANGE);
         }
