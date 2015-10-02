@@ -54,6 +54,7 @@ dependencies {
     compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
     compile 'com.jayway.jsonpath:json-path:0.9.1'
     compile "com.google.code.gson:gson:2.3.1"
+    compile 'commons-codec:commons-codec:1.10'
 
     testCompile 'com.github.dreamhead:moco-core:0.10.0'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
