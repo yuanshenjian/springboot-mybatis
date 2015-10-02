@@ -4,6 +4,8 @@ import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;
 import java.security.*;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 
 public class RSAUtils {
 
@@ -19,7 +21,25 @@ public class RSAUtils {
         }
     }
 
+    public static PublicKey getPublicKey(String key) throws Exception {
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.decodeBase64(key));
+        KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
+        PublicKey publicKey = keyFactory.generatePublic(keySpec);
+        return publicKey;
+    }
+
     public static String getPublicKey(PublicKey key) {
+        return Base64.encodeBase64String(key.getEncoded());
+    }
+
+    public static PrivateKey getPrivateKey(String key) throws Exception {
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(Base64.decodeBase64(key));
+        KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
+        PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
+        return privateKey;
+    }
+
+    public static String getPrivateKey(PrivateKey key) {
         return Base64.encodeBase64String(key.getEncoded());
     }
 
@@ -33,10 +53,6 @@ public class RSAUtils {
         }
     }
 
-    public static String encryptAsString(String data, PublicKey publicKey) {
-        return Base64.encodeBase64String(encryptAsByteArray(data, publicKey));
-    }
-
     public static String decrypt(byte[] data, PrivateKey privateKey) {
         try {
             Cipher cipher = Cipher.getInstance("RSA");
@@ -45,6 +61,10 @@ public class RSAUtils {
         } catch (Exception e) {
             throw new IllegalArgumentException("Decrypt failed!", e);
         }
+    }
+
+    public static String encryptAsString(String data, PublicKey publicKey) {
+        return Base64.encodeBase64String(encryptAsByteArray(data, publicKey));
     }
 
     public static String decrypt(String data, PrivateKey privateKey) {

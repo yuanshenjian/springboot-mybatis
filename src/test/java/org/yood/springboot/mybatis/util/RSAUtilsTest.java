@@ -37,7 +37,47 @@ public class RSAUtilsTest {
     }
 
     @Test
-    public void testDecrypt() throws Exception {
+    public void testDecryptForByteArray() throws Exception {
         testEncrypt();
+    }
+
+    @Test
+    public void testDecryptForString() throws Exception {
+
+    }
+
+    @Test
+    public void testGetPublicKey() throws Exception {
+
+    }
+
+    @Test
+    public void testGetPublicKey1() throws Exception {
+
+    }
+
+    @Test
+    public void testGetPrivateKey() throws Exception {
+
+    }
+
+    @Test
+    public void testGetPrivateKey1() throws Exception {
+
+    }
+
+    @Test
+    public void testEncryptAsByteArray() throws Exception {
+
+    }
+
+    @Test
+    public void testDecrypt1() throws Exception {
+
+    }
+
+    @Test
+    public void testEncryptAsString() throws Exception {
+
     }
 }
