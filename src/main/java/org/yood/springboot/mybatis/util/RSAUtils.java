@@ -23,7 +23,7 @@ public class RSAUtils {
         return Base64.encodeBase64String(key.getEncoded());
     }
 
-    public static byte[] encrypt(String data, PublicKey publicKey) {
+    public static byte[] encryptAsByteArray(String data, PublicKey publicKey) {
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
@@ -31,6 +31,10 @@ public class RSAUtils {
         } catch (Exception e) {
             throw new IllegalArgumentException("Encrypt failed!", e);
         }
+    }
+
+    public static String encryptAsString(String data, PublicKey publicKey) {
+        return Base64.encodeBase64String(encryptAsByteArray(data, publicKey));
     }
 
     public static String decrypt(byte[] data, PrivateKey privateKey) {
@@ -41,5 +45,9 @@ public class RSAUtils {
         } catch (Exception e) {
             throw new IllegalArgumentException("Decrypt failed!", e);
         }
+    }
+
+    public static String decrypt(String data, PrivateKey privateKey) {
+        return decrypt(Base64.decodeBase64(data), privateKey);
     }
 }

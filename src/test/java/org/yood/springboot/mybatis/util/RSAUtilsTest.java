@@ -30,7 +30,7 @@ public class RSAUtilsTest {
 
         String encryptData = "中华人民共和国";
         LOGGER.info("Encrypt data = {}", encryptData);
-        byte[] encryptedData = RSAUtils.encrypt(encryptData, publicKey);
+        String encryptedData = RSAUtils.encryptAsString(encryptData, publicKey);
         String decryptData = RSAUtils.decrypt(encryptedData, privateKey);
         LOGGER.info("Decrypt data = {}", decryptData);
         assertEquals(encryptData, decryptData);
