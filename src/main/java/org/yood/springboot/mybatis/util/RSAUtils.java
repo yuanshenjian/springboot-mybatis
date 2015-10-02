@@ -1,5 +1,7 @@
 package org.yood.springboot.mybatis.util;
 
+import org.apache.commons.codec.binary.Base64;
+
 import javax.crypto.Cipher;
 import java.security.*;
 
@@ -15,6 +17,10 @@ public class RSAUtils {
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalArgumentException("Failed to generate key pair!", e);
         }
+    }
+
+    public static String getPublicKey(PublicKey key) {
+        return Base64.encodeBase64String(key.getEncoded());
     }
 
     public static byte[] encrypt(String data, PublicKey publicKey) {

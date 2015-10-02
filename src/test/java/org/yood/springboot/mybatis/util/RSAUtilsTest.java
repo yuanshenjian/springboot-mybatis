@@ -28,7 +28,7 @@ public class RSAUtilsTest {
         PrivateKey privateKey = keyPair.getPrivate();
         LOGGER.info("Public Key = {}, Private Key = {}", publicKey, privateKey);
 
-        String encryptData = "中华人民共和国中华人民共和国中华人民共和国中华人民共和国中华人民共和国中华人民共和国中华人民共和国";
+        String encryptData = "中华人民共和国";
         LOGGER.info("Encrypt data = {}", encryptData);
         byte[] encryptedData = RSAUtils.encrypt(encryptData, publicKey);
         String decryptData = RSAUtils.decrypt(encryptedData, privateKey);
