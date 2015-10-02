@@ -19,7 +19,6 @@ public class RSAUtilsTest {
     public void testGenerateKeyPair() throws Exception {
         KeyPair keyPair = RSAUtils.generateKeyPair();
         assertNotNull(keyPair);
-
     }
 
     @Test
@@ -34,7 +33,7 @@ public class RSAUtilsTest {
         byte[] encryptedData = RSAUtils.encrypt(encryptData, publicKey);
         String decryptData = RSAUtils.decrypt(encryptedData, privateKey);
         LOGGER.info("Decrypt data = {}", decryptData);
-        assertEquals(encryptData,decryptData);
+        assertEquals(encryptData, decryptData);
     }
 
     @Test
