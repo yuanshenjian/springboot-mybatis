@@ -1,5 +1,6 @@
 package org.yood.springboot.mybatis.util;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,19 +16,59 @@ public class RSAUtilsTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RSAUtilsTest.class);
 
-    @Test
-    public void testGenerateKeyPair() throws Exception {
-        KeyPair keyPair = RSAUtils.generateKeyPair();
-        assertNotNull(keyPair);
+    private static KeyPair keyPair;
+    private static PublicKey publicKey;
+    private static PrivateKey privateKey;
+
+    @BeforeClass
+    public static void setup() {
+        keyPair = RSAUtils.generateKeyPair();
+        publicKey = keyPair.getPublic();
+        privateKey = keyPair.getPrivate();
+        LOGGER.info("Public Key = {}, Private Key = {}", publicKey, privateKey);
     }
 
     @Test
-    public void testEncrypt() throws Exception {
-        KeyPair keyPair = RSAUtils.generateKeyPair();
-        PublicKey publicKey = keyPair.getPublic();
-        PrivateKey privateKey = keyPair.getPrivate();
-        LOGGER.info("Public Key = {}, Private Key = {}", publicKey, privateKey);
+    public void testGenerateKeyPair() throws Exception {
+        assertNotNull(keyPair);
+        assertNotNull(publicKey);
+        assertNotNull(privateKey);
+    }
 
+    @Test
+    public void testGetPublicKey() throws Exception {
+        String publicKeyString = RSAUtils.getPublicKey(RSAUtilsTest.publicKey);
+        assertEquals(publicKey, RSAUtils.getPublicKey(publicKeyString));
+    }
+
+    @Test
+    public void testGetPublicKey1() throws Exception {
+        testGetPublicKey();
+    }
+
+    @Test
+    public void testGetPrivateKey() throws Exception {
+        String privateKeyString = RSAUtils.getPrivateKey(RSAUtilsTest.privateKey);
+        assertEquals(privateKey, RSAUtils.getPrivateKey(privateKeyString));
+    }
+
+    @Test
+    public void testGetPrivateKey1() throws Exception {
+        testGetPrivateKey();
+    }
+
+    @Test
+    public void testEncryptAsByteArray() throws Exception {
+        String encryptData = "中华人民共和国";
+        LOGGER.info("Encrypt data = {}", encryptData);
+        byte[] encryptedData = RSAUtils.encryptAsByteArray(encryptData, publicKey);
+        String decryptData = RSAUtils.decrypt(encryptedData, privateKey);
+        LOGGER.info("Decrypt data = {}", decryptData);
+        assertEquals(encryptData, decryptData);
+    }
+
+    @Test
+    public void testEncryptAsString() throws Exception {
         String encryptData = "中华人民共和国";
         LOGGER.info("Encrypt data = {}", encryptData);
         String encryptedData = RSAUtils.encryptAsString(encryptData, publicKey);
@@ -38,46 +79,11 @@ public class RSAUtilsTest {
 
     @Test
     public void testDecryptForByteArray() throws Exception {
-        testEncrypt();
+        testEncryptAsByteArray();
     }
 
     @Test
     public void testDecryptForString() throws Exception {
-
-    }
-
-    @Test
-    public void testGetPublicKey() throws Exception {
-
-    }
-
-    @Test
-    public void testGetPublicKey1() throws Exception {
-
-    }
-
-    @Test
-    public void testGetPrivateKey() throws Exception {
-
-    }
-
-    @Test
-    public void testGetPrivateKey1() throws Exception {
-
-    }
-
-    @Test
-    public void testEncryptAsByteArray() throws Exception {
-
-    }
-
-    @Test
-    public void testDecrypt1() throws Exception {
-
-    }
-
-    @Test
-    public void testEncryptAsString() throws Exception {
-
+        testEncryptAsString();
     }
 }
