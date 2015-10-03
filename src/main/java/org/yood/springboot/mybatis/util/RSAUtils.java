@@ -9,6 +9,9 @@ import java.security.spec.X509EncodedKeySpec;
 
 public class RSAUtils {
 
+    private RSAUtils() {
+    }
+
     private static final String ALGORITHM = "RSA";
 
     public static KeyPair generateKeyPair() {
