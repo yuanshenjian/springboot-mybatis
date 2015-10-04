@@ -24,22 +24,30 @@ public class RSAUtils {
         }
     }
 
-    public static PublicKey getPublicKey(String key) throws Exception {
-        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.decodeBase64(key));
-        KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
-        PublicKey publicKey = keyFactory.generatePublic(keySpec);
-        return publicKey;
+    public static PublicKey getPublicKey(String key) {
+        try {
+            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.decodeBase64(key));
+            KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
+            PublicKey publicKey = keyFactory.generatePublic(keySpec);
+            return publicKey;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Failed to get public key!", e);
+        }
     }
 
     public static String getPublicKey(PublicKey key) {
         return Base64.encodeBase64String(key.getEncoded());
     }
 
-    public static PrivateKey getPrivateKey(String key) throws Exception {
-        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(Base64.decodeBase64(key));
-        KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
-        PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
-        return privateKey;
+    public static PrivateKey getPrivateKey(String key) {
+        try {
+            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(Base64.decodeBase64(key));
+            KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
+            PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
+            return privateKey;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Failed to get private key!", e);
+        }
     }
 
     public static String getPrivateKey(PrivateKey key) {
