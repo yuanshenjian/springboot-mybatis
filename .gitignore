@@ -16,3 +16,4 @@ logs/
 *.log
 *.DS_Store
 conf/properties/*
+springboot-mybatis.iws
