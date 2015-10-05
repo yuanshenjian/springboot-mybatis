@@ -24,9 +24,9 @@ public class RSAUtils {
         }
     }
 
-    public static PublicKey getPublicKey(String key) {
+    public static PublicKey getPublicKey(String publicKeyStr) {
         try {
-            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.decodeBase64(key));
+            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.decodeBase64(publicKeyStr));
             KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
             PublicKey publicKey = keyFactory.generatePublic(keySpec);
             return publicKey;
@@ -35,13 +35,13 @@ public class RSAUtils {
         }
     }
 
-    public static String getPublicKey(PublicKey key) {
-        return Base64.encodeBase64String(key.getEncoded());
+    public static String getPublicKeyStr(PublicKey publicKey) {
+        return Base64.encodeBase64String(publicKey.getEncoded());
     }
 
-    public static PrivateKey getPrivateKey(String key) {
+    public static PrivateKey getPrivateKey(String privateKeyStr) {
         try {
-            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(Base64.decodeBase64(key));
+            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(Base64.decodeBase64(privateKeyStr));
             KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
             PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
             return privateKey;
@@ -50,9 +50,10 @@ public class RSAUtils {
         }
     }
 
-    public static String getPrivateKey(PrivateKey key) {
-        return Base64.encodeBase64String(key.getEncoded());
+    public static String getPrivateKeyStr(PrivateKey privateKey) {
+        return Base64.encodeBase64String(privateKey.getEncoded());
     }
+
 
     public static byte[] encryptAsByteArray(String data, PublicKey publicKey) {
         try {
@@ -64,6 +65,19 @@ public class RSAUtils {
         }
     }
 
+    public static byte[] encryptAsByteArray(String data, String publicKeyStr) {
+        return encryptAsByteArray(data, getPublicKey(publicKeyStr));
+    }
+
+    public static String encryptAsString(String data, PublicKey publicKey) {
+        return Base64.encodeBase64String(encryptAsByteArray(data, publicKey));
+    }
+
+    public static String encryptAsString(String data, String publicKeyStr) {
+        return Base64.encodeBase64String(encryptAsByteArray(data, getPublicKey(publicKeyStr)));
+    }
+
+
     public static String decrypt(byte[] data, PrivateKey privateKey) {
         try {
             Cipher cipher = Cipher.getInstance("RSA");
@@ -74,11 +88,15 @@ public class RSAUtils {
         }
     }
 
-    public static String encryptAsString(String data, PublicKey publicKey) {
-        return Base64.encodeBase64String(encryptAsByteArray(data, publicKey));
+    public static String decrypt(byte[] data, String privateKeyStr) {
+        return decrypt(data, getPrivateKey(privateKeyStr));
     }
 
     public static String decrypt(String data, PrivateKey privateKey) {
         return decrypt(Base64.decodeBase64(data), privateKey);
+    }
+
+    public static String decrypt(String data, String privateKeyStr) {
+        return decrypt(Base64.decodeBase64(data), getPrivateKey(privateKeyStr));
     }
 }
