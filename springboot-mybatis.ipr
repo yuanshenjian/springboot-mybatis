@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactManager">
+    <artifact type="exploded-war" name="springboot-mybatis:war exploded">
+      <output-path>$PROJECT_DIR$/classes/artifacts/springboot_mybatis_war_exploded</output-path>
+      <root id="root">
+        <element id="javaee-facet-resources" facet="springboot-mybatis/web/Web" />
+        <element id="directory" name="WEB-INF">
+          <element id="directory" name="classes">
+            <element id="module-output" name="springboot-mybatis" />
+          </element>
+        </element>
+      </root>
+    </artifact>
+  </component>
   <component name="CompilerConfiguration">
     <resourceExtensions />
     <wildcardResourcePatterns>

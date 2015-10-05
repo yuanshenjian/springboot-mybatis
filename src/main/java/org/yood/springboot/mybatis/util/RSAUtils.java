@@ -3,8 +3,10 @@ package org.yood.springboot.mybatis.util;
 import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;
+import java.math.BigInteger;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 public class RSAUtils {
@@ -50,6 +52,19 @@ public class RSAUtils {
         }
     }
 
+    public static PrivateKey getPrivateKey(String modulus, String exponent) {
+        try {
+            BigInteger b1 = new BigInteger(modulus);
+            BigInteger b2 = new BigInteger(exponent);
+            KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
+            RSAPrivateKeySpec keySpec = new RSAPrivateKeySpec(b1, b2);
+            return keyFactory.generatePrivate(keySpec);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static String getPrivateKeyStr(PrivateKey privateKey) {
         return Base64.encodeBase64String(privateKey.getEncoded());
     }
@@ -57,7 +72,7 @@ public class RSAUtils {
 
     public static byte[] encryptAsByteArray(String data, PublicKey publicKey) {
         try {
-            Cipher cipher = Cipher.getInstance(ALGORITHM);
+            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
             return cipher.doFinal(data.getBytes());
         } catch (Exception e) {
@@ -80,7 +95,7 @@ public class RSAUtils {
 
     public static String decrypt(byte[] data, PrivateKey privateKey) {
         try {
-            Cipher cipher = Cipher.getInstance("RSA");
+            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
             return new String(cipher.doFinal(data));
         } catch (Exception e) {

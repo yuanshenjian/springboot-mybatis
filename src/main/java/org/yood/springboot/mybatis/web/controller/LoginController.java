@@ -21,4 +21,9 @@ public class LoginController {
         model.put("date", new Date());
         return "home";
     }
+
+    @RequestMapping("/encryption")
+    public String encryption(Map<String, Object> model) {
+        return "encryption";
+    }
 }

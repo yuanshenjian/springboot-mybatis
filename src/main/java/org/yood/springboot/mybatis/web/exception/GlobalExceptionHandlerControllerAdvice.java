@@ -30,7 +30,6 @@ public class GlobalExceptionHandlerControllerAdvice {
         LOGGER.error("Hacker attack,leave it away,we are safe");
     }
 
-
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<List<ExceptionBody>> handleBusinessIllegalArgumentException(BusinessException exception) {
         LOGGER.error("BusinessException {}", exception.getExceptionBodies());

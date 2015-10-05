@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module external.linked.project.id="springboot-mybatis" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="org.yood.springboot" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="web" name="Web">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/web" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
+        </sourceRoots>
+      </configuration>
+    </facet>
+  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/build/classes/main" />
     <output-test url="file://$MODULE_DIR$/build/classes/test" />
@@ -16,7 +32,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-web:1.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-thymeleaf:1.2.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-security:1.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-jdbc:1.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-configuration-processor:1.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.mybatis:mybatis:3.2.4" level="project" />
@@ -38,8 +53,6 @@
     <orderEntry type="library" name="Gradle: org.springframework:spring-beans:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-context:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-expression:4.1.7.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-config:3.2.7.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-web:3.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-aop:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-jdbc:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-tx:4.1.7.RELEASE" level="project" />
@@ -58,7 +71,6 @@
     <orderEntry type="library" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" name="Gradle: org.thymeleaf:thymeleaf:2.1.4.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-core:3.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.12" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:jul-to-slf4j:1.7.12" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:log4j-over-slf4j:1.7.12" level="project" />
@@ -98,5 +110,9 @@
     <orderEntry type="library" scope="TEST" name="Gradle: net.minidev:asm:1.0.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: asm:asm:3.3.1" level="project" />
     <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.10" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-security:1.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-config:3.2.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-web:3.2.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-core:3.2.7.RELEASE" level="project" />
   </component>
 </module>
