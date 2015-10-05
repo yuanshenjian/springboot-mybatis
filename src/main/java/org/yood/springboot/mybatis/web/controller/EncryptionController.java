@@ -25,7 +25,7 @@ public class EncryptionController {
     private static final Logger LOGGER = LoggerFactory.getLogger(EncryptionController.class);
 
 
-    @RequestMapping(value = "/authentication-encryption-parameters",
+    @RequestMapping(value = "/encryption-parameters",
                     method = RequestMethod.GET)
     public ResponseEntity<?> getEncryptionPublicKey(HttpServletRequest request) {
         KeyPair keyPair = RSAUtils.generateKeyPair();

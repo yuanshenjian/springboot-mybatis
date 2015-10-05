@@ -1,7 +1,6 @@
 $(document).ready(function () {
-    var publicKeyUrl = "http://localhost:8099/sbm/authentication-encryption-parameters";
+    var publicKeyUrl = "http://localhost:8099/sbm/encryption-parameters";
     var encryptUrl = "http://localhost:8099/sbm/encryption-data";
-    var modulus, exponent;
 
     $("#getPublicKey").click(function (e) {
         e.preventDefault();
@@ -19,28 +18,10 @@ $(document).ready(function () {
 
     });
 
-    $("#getPublicKey1").click(function (e) {
-        e.preventDefault();
-        $('#publicKey').text("loading...");
-        $.get(publicKeyUrl, function (result) {
-            console.log(result);
-            if (result["modulus"] != null && result["exponent"] != null) {
-                modulus = result["modulus"];
-                exponent = result["exponent"];
-                $('#modulus').text(result["modulus"]);
-                $('#exponent').text(result["exponent"]);
-            }
-        })
-            .fail(function () {
-                alert("error");
-            });
-    });
-
     $("#encryption").click(function (e) {
         e.preventDefault();
         if ($("#message").val() != "") {
             var encrypt = new JSEncrypt();
-            //var publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDlOJu6TyygqxfWT7eLtGDwajtNFOb9I5XRb6khyfD1Yt3YiCgQWMNW649887VGJiGr/L5i2osbl8C9+WJTeucF+S76xFxdU6jE0NQ+Z+zEdhUTooNRaY5nZiu5PgDB0ED/ZKBUSLKL7eibMxZtMlUDHjm4gwQco1KRMDSmXSMkDwIDAQAB";
             var publicKey = $('#publicKey').text();
             encrypt.setPublicKey(publicKey);
             var encrypted = encrypt.encrypt($('#message').val());

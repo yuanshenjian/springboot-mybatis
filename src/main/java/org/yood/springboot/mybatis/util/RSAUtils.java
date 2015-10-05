@@ -11,6 +11,8 @@ import java.security.spec.X509EncodedKeySpec;
 
 public class RSAUtils {
 
+    public static final String RSA_ECB_PKCS1_PADDING = "RSA/ECB/PKCS1Padding";
+
     private RSAUtils() {
     }
 
@@ -72,7 +74,7 @@ public class RSAUtils {
 
     public static byte[] encryptAsByteArray(String data, PublicKey publicKey) {
         try {
-            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            Cipher cipher = Cipher.getInstance(RSA_ECB_PKCS1_PADDING);
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
             return cipher.doFinal(data.getBytes());
         } catch (Exception e) {
@@ -95,7 +97,7 @@ public class RSAUtils {
 
     public static String decrypt(byte[] data, PrivateKey privateKey) {
         try {
-            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            Cipher cipher = Cipher.getInstance(RSA_ECB_PKCS1_PADDING);
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
             return new String(cipher.doFinal(data));
         } catch (Exception e) {
