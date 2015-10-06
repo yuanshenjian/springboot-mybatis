@@ -8,6 +8,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -23,7 +24,7 @@ public abstract class BasicMockMvcTest {
     @Rule
     public final ExpectedException thrown = ExpectedException.none();
 
-    private MockMvc mockMvc;
+    protected MockMvc mockMvc;
 
     @Before
     public void mvcSetup() {
@@ -39,9 +40,9 @@ public abstract class BasicMockMvcTest {
         return mockMvc.perform(get(uri, urlVariables).contentType(mediaType));
     }
 
-    protected ResultActions mockPost(String uri, MediaType mediaType, String content,
+    protected ResultActions mockPost(String uri, MediaType mediaType, String content, MockHttpSession session,
                                      Object... urlVariables) throws Exception {
-        return mockMvc.perform(post(uri, urlVariables).contentType(mediaType).content(content));
+        return mockMvc.perform(post(uri, urlVariables).contentType(mediaType).content(content).session(session));
     }
 
     protected ResultActions mockPut(String uri, MediaType mediaType, String content,

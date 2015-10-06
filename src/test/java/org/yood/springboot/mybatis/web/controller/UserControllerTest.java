@@ -82,7 +82,7 @@ public class UserControllerTest extends BasicMockMvcTest {
         roles.add(Authority.Role.ADMIN);
         user.setRoles(roles);
         doCallRealMethod().when(userValidator).validate(any(User.class), any(Errors.class));
-        mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user)).andExpect(status().isOk());
+        mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user), null).andExpect(status().isOk());
         verify(userService).add(any(User.class));
     }
 }
