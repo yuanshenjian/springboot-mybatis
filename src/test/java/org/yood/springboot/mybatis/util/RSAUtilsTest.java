@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigInteger;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -22,39 +23,66 @@ public class RSAUtilsTest {
 
     @BeforeClass
     public static void setup() {
-        keyPair = RSAUtils.generateKeyPair();
+        keyPair = RSAUtils.generateKeyPair(RSAUtils.KEY_SIZE_2048);
         publicKey = keyPair.getPublic();
         privateKey = keyPair.getPrivate();
         LOGGER.info("Public Key = {}, Private Key = {}", publicKey, privateKey);
     }
 
     @Test
-    public void testGenerateKeyPair() throws Exception {
+    public void testGenerateKeyPairWhenDefaultSize() throws Exception {
+        KeyPair keyPair = RSAUtils.generateKeyPair();
+        PublicKey publicKey = keyPair.getPublic();
+        PrivateKey privateKey = keyPair.getPrivate();
         assertNotNull(keyPair);
         assertNotNull(publicKey);
         assertNotNull(privateKey);
     }
 
     @Test
-    public void testGetPublicKeyStr() throws Exception {
-        String publicKeyString = RSAUtils.getPublicKeyStr(RSAUtilsTest.publicKey);
+    public void testGenerateKeyPair() throws Exception {
+        KeyPair keyPair = RSAUtils.generateKeyPair(RSAUtils.KEY_SIZE_2048);
+        PublicKey publicKey = keyPair.getPublic();
+        PrivateKey privateKey = keyPair.getPrivate();
+        assertNotNull(keyPair);
+        assertNotNull(publicKey);
+        assertNotNull(privateKey);
+    }
+
+    @Test
+    public void testGetBase64PublicKey() throws Exception {
+        String publicKeyString = RSAUtils.getBase64PublicKey(publicKey);
         assertEquals(publicKey, RSAUtils.getPublicKey(publicKeyString));
     }
 
     @Test
     public void testGetPublicKey() throws Exception {
-        testGetPublicKeyStr();
+        testGetBase64PublicKey();
     }
 
     @Test
-    public void testGetPrivateKeyStr() throws Exception {
-        String privateKeyString = RSAUtils.getPrivateKeyStr(RSAUtilsTest.privateKey);
+    public void testGetBase64PrivateKey() throws Exception {
+        String privateKeyString = RSAUtils.getBase64PrivateKey(privateKey);
         assertEquals(privateKey, RSAUtils.getPrivateKey(privateKeyString));
     }
 
     @Test
+    public void testGetPublicKeyFromNAndEBigInteger() throws Exception {
+        BigInteger modulus = new BigInteger(publicKey.getEncoded());
+        BigInteger exponent = new BigInteger("65573");
+        assertNotNull(RSAUtils.getPublicKey(modulus, exponent));
+    }
+
+    @Test
+    public void testGetPrivateKeyFromNAndEBigInteger() throws Exception {
+        BigInteger modulus = new BigInteger(privateKey.getEncoded());
+        BigInteger exponent = new BigInteger("65573");
+        assertNotNull(RSAUtils.getPrivateKey(modulus, exponent));
+    }
+
+    @Test
     public void testGetPrivateKey() throws Exception {
-        testGetPrivateKeyStr();
+        testGetBase64PrivateKey();
     }
 
     @Test
@@ -91,8 +119,8 @@ public class RSAUtilsTest {
     public void testEncryptAsString1() throws Exception {
         String encryptData = "中华人民共和国";
         LOGGER.info("Encrypt data = {}", encryptData);
-        String encryptedData = RSAUtils.encryptAsString(encryptData, RSAUtils.getPublicKeyStr(publicKey));
-        String decryptData = RSAUtils.decrypt(encryptedData, RSAUtils.getPrivateKeyStr(privateKey));
+        String encryptedData = RSAUtils.encryptAsString(encryptData, RSAUtils.getBase64PublicKey(publicKey));
+        String decryptData = RSAUtils.decrypt(encryptedData, RSAUtils.getBase64PrivateKey(privateKey));
         LOGGER.info("Decrypt data = {}", decryptData);
         assertEquals(encryptData, decryptData);
     }
@@ -101,8 +129,8 @@ public class RSAUtilsTest {
     public void testEncryptAsByteArray1() throws Exception {
         String encryptData = "中华人民共和国";
         LOGGER.info("Encrypt data = {}", encryptData);
-        byte[] encryptedData = RSAUtils.encryptAsByteArray(encryptData, RSAUtils.getPublicKeyStr(publicKey));
-        String decryptData = RSAUtils.decrypt(encryptedData, RSAUtils.getPrivateKeyStr(privateKey));
+        byte[] encryptedData = RSAUtils.encryptAsByteArray(encryptData, RSAUtils.getBase64PublicKey(publicKey));
+        String decryptData = RSAUtils.decrypt(encryptedData, RSAUtils.getBase64PrivateKey(privateKey));
         LOGGER.info("Decrypt data = {}", decryptData);
         assertEquals(encryptData, decryptData);
     }

@@ -28,12 +28,12 @@ public class EncryptionController {
     @RequestMapping(value = "/encryption-parameters",
                     method = RequestMethod.GET)
     public ResponseEntity<?> getEncryptionPublicKey(HttpServletRequest request) {
-        KeyPair keyPair = RSAUtils.generateKeyPair();
+        KeyPair keyPair = RSAUtils.generateKeyPair(2048);
         PrivateKey privateKey = keyPair.getPrivate();
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
         request.getSession().setAttribute("_private_key", privateKey);
 
-        String publicKeyString = RSAUtils.getPublicKeyStr(publicKey);
+        String publicKeyString = RSAUtils.getBase64PublicKey(publicKey);
         LOGGER.info("Public key = {}", publicKeyString);
         LOGGER.info("Public key byte = {}", keyPair.getPublic().getEncoded());
         Map<String, Object> publicKeyMap = new HashMap<>();
