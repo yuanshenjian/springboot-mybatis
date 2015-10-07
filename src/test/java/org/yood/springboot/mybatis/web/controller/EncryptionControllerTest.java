@@ -17,6 +17,8 @@ import java.security.KeyPair;
 import java.security.PrivateKey;
 
 import static junit.framework.Assert.assertNotNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -34,7 +36,8 @@ public class EncryptionControllerTest extends BasicMockMvcTest {
 
     @Test
     public void testGetEncryptionPublicKey() throws Exception {
-        HttpSession session = mockGet("/encryption-parameters", MediaType.APPLICATION_JSON).andExpect(status().isOk())
+        HttpSession session = mockMvc.perform(get("/encryption-parameters").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.publicKey").exists())
                 .andDo(print())
                 .andReturn()
@@ -54,9 +57,8 @@ public class EncryptionControllerTest extends BasicMockMvcTest {
         String encryptAsString = RSAUtils.encryptAsString("hello world", keyPair.getPublic());
         LOGGER.info("Encrypt data = {}", encryptAsString);
         ImmutableMap<String, String> content = ImmutableMap.of("encryptedData", encryptAsString);
-        mockPost("/encryption-data",MediaType.APPLICATION_JSON, JSONUtils.toJSONString(content),session);
-//        mockMvc.perform(post("/encryption-data").contentType(MediaType.APPLICATION_JSON)
-//                                .session(session)
-//                                .content(JSONUtils.toJSONString(content))).andExpect(status().isOk());
+        mockMvc.perform(post("/encryption-data").contentType(MediaType.APPLICATION_JSON)
+                                .session(session)
+                                .content(JSONUtils.toJSONString(content))).andExpect(status().isOk());
     }
 }

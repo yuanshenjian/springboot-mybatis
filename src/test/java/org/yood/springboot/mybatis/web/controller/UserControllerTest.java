@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.Errors;
 import org.yood.springboot.mybatis.BasicMockMvcTest;
@@ -23,6 +22,8 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -50,7 +51,8 @@ public class UserControllerTest extends BasicMockMvcTest {
         user.setAge(25);
         user.setSex(User.Sex.FEMALE);
         when(userService.getByUserName(anyString())).thenReturn(user);
-        mockGet("/users/" + user.getName(), MediaType.APPLICATION_JSON).andExpect(status().isOk())
+        mockMvc.perform(get("/users/" + user.getName()).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.age", is(25)))
                 .andExpect(jsonPath("$.sex", is(User.Sex.FEMALE.name())))
                 .andExpect(jsonPath("$.name", is("sjyuan")));
@@ -64,7 +66,8 @@ public class UserControllerTest extends BasicMockMvcTest {
         User user2 = new User();
         user2.setName("sjyuan2");
         when(userService.getAll()).thenReturn(Arrays.asList(user1, user2));
-        mockGet("/users", MediaType.APPLICATION_JSON).andExpect(status().isOk())
+        mockMvc.perform(get("/users", MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", is("sjyuan1")))
                 .andExpect(jsonPath("$[1].name", is("sjyuan2")));
@@ -83,9 +86,8 @@ public class UserControllerTest extends BasicMockMvcTest {
         roles.add(Authority.Role.ADMIN);
         user.setRoles(roles);
         doCallRealMethod().when(userValidator).validate(any(User.class), any(Errors.class));
-        MockHttpSession session = new MockHttpSession();
-        mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user), session).andExpect(status().isOk
-                ());
+        mockMvc.perform(post("/users").contentType(MediaType.APPLICATION_JSON).content(JSONUtils.toJSONString(user)))
+                .andExpect(status().isOk());
         verify(userService).add(any(User.class));
     }
 }
