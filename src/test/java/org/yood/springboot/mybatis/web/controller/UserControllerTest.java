@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.Errors;
 import org.yood.springboot.mybatis.BasicMockMvcTest;
@@ -82,7 +83,9 @@ public class UserControllerTest extends BasicMockMvcTest {
         roles.add(Authority.Role.ADMIN);
         user.setRoles(roles);
         doCallRealMethod().when(userValidator).validate(any(User.class), any(Errors.class));
-        mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user), null).andExpect(status().isOk());
+        MockHttpSession session = new MockHttpSession();
+        mockPost("/users", MediaType.APPLICATION_JSON, JSONUtils.toJSONString(user), session).andExpect(status().isOk
+                ());
         verify(userService).add(any(User.class));
     }
 }

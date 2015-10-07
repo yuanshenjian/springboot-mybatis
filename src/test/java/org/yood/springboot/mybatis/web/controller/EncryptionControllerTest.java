@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class EncryptionControllerTest extends BasicMockMvcTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(EncryptionController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EncryptionControllerTest.class);
 
     @InjectMocks
     private EncryptionController encryptionController;
