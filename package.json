@@ -1,0 +1,19 @@
+{
+  "name": "spring-boot-mybatis",
+  "version": "1.0.0",
+  "description": "The project is a demo project,which integrates the mybatis with spring-boot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ysjian/spring-boot-mybatis.git"
+  },
+  "author": "sjyuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ysjian/spring-boot-mybatis/issues"
+  },
+  "homepage": "https://github.com/ysjian/spring-boot-mybatis#readme"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "spring-boot-mybatis",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ysjian/spring-boot-mybatis",
+  "authors": [
+    "Shenjian YUAN <sjyuan@thoughtworks.com>"
+  ],
+  "description": "init project",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
