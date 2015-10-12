@@ -91,7 +91,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpclient:4.3.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.freemarker:freemarker:2.3.21" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty-codec-http:4.0.24.Final" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:guava:18.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: commons-io:commons-io:2.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.mockito:mockito-core:1.10.19" level="project" />
@@ -114,6 +113,6 @@
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-config:3.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-web:3.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-core:3.2.7.RELEASE" level="project" />
-    <orderEntry type="library" name="spring-boot-mybatis node_modules" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:guava:18.0" level="project" />
   </component>
 </module>
