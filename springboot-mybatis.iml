@@ -114,5 +114,6 @@
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-web:3.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-core:3.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:guava:18.0" level="project" />
+    <orderEntry type="library" name="spring-boot-mybatis node_modules" level="project" />
   </component>
 </module>

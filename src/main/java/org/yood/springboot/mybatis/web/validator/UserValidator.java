@@ -31,8 +31,5 @@ public class UserValidator extends GenericValidator<User> {
         if (user.getAge() > 100) {
             errors.rejectValue("age", ExceptionCode.Validation.AGE_TOO_OLD);
         }
-        if (null == user.getRoles() || user.getRoles().isEmpty()) {
-
-        }
     }
 }
