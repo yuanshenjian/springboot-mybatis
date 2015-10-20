@@ -12,12 +12,11 @@ import org.yood.springboot.mybatis.SpringBootMybatisApplication;
 import org.yood.springboot.mybatis.entity.User;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SpringBootMybatisApplication.class)
-@TransactionConfiguration(defaultRollback = true)
 @Transactional
+@TransactionConfiguration
 public class UserMapperTest {
 
     @Autowired
@@ -27,7 +26,7 @@ public class UserMapperTest {
     public void testAdd() throws Exception {
         int preSize = userMapper.selectAll().size();
         User user = new User();
-        user.setName("ysjian");
+        user.setName("ysjian003");
         user.setPassword(new BCryptPasswordEncoder().encode("000"));
         user.setSex(User.Sex.MALE);
         userMapper.insert(user);
@@ -38,10 +37,4 @@ public class UserMapperTest {
     public void testGet() throws Exception {
         userMapper.selectByName("").getName();
     }
-
-    @Test
-    public void testGetAll() throws Exception {
-        assertTrue(userMapper.selectAll().size() >= 0);
-    }
-
 }
