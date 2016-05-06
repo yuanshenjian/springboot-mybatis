@@ -28,4 +28,3 @@ The project is a demo project,which integrates the mybatis with spring-boot
 
     $ gradle clean build
     
-End
